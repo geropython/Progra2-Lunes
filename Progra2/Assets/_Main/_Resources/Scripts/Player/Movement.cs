@@ -5,17 +5,12 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     // Movement / Speed Variables
-    private float moveSpeed = 5;
+   [SerializeField] private float moveSpeed = 5;
+   [SerializeField] Animator animator;
     public Rigidbody2D rb;
     private Vector2 movement;
     private float moveLimiter = 0.7f;
-    [SerializeField] Animator animator; 
-
-    
-    void Start()
-    {
-        //.
-    }
+ 
 
     // Update is called once per frame
     void Update()
@@ -39,6 +34,5 @@ public class Movement : MonoBehaviour
             movement.y *= moveLimiter;
         }
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-        
     }
 }
