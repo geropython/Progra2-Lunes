@@ -192,8 +192,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7dc06ec56b5264ba909fe31180b186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 215636037}
+  moveSpeed: 5
   animator: {fileID: 215636040}
+  rb: {fileID: 215636037}
 --- !u!95 &215636040 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6211607114924382616, guid: e7327a52201ce5f47a7d4722d019d840, type: 3}
@@ -3485,7 +3486,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4.651914
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
