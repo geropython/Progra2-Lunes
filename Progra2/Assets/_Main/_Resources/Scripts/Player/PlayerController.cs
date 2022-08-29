@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     // Movement / Speed Variables
    [SerializeField] private float moveSpeed = 5;
@@ -11,8 +11,8 @@ public class Movement : MonoBehaviour
     private Vector2 movement;
     private float moveLimiter = 0.7f;
  
+    //-----------------METHODS----------------------
 
-    // Update is called once per frame
     void Update()
     {
         //Movement controller
@@ -25,6 +25,8 @@ public class Movement : MonoBehaviour
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
     }
+
+    //For Physics stuff
     private void FixedUpdate()
     {
         //Diagonal movement Checker ( reduces the movement speed by 70%)
