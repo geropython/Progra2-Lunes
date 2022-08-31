@@ -24,6 +24,22 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
+
+        //INPUT TESTING DAMAGE AND HEALTH SYSTEM
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PlayerTakeDamage(20);
+            Debug.Log(GameManager.gameManager._playerHealth.Health);
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            PlayerHeal(20);
+            Debug.Log(GameManager.gameManager._playerHealth.Health);
+
+        }
+
     }
 
     //For Physics stuff
@@ -36,5 +52,19 @@ public class PlayerController : MonoBehaviour
             movement.y *= moveLimiter;
         }
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    //--------- HEALTH SYSTEM-------------
+    private void PlayerTakeDamage(int damage)
+    {
+        GameManager.gameManager._playerHealth.Damage(damage);
+        
+    }
+
+
+    private void PlayerHeal(int healing)
+    {
+        GameManager.gameManager._playerHealth.Heal(healing);
+       
     }
 }
