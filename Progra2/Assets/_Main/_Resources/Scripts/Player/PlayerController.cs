@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     // Movement / Speed Variables
    [SerializeField] private float moveSpeed = 5;
    [SerializeField] Animator animator;
+   [SerializeField] HealthBarScript _healthBar;
     public Rigidbody2D rb;
     private Vector2 movement;
     private float moveLimiter = 0.7f;
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
     private void PlayerTakeDamage(int damage)
     {
         GameManager.gameManager._playerHealth.Damage(damage);
+        _healthBar.SetHealth(GameManager.gameManager._playerHealth.Health);
         
     }
 
@@ -65,6 +67,7 @@ public class PlayerController : MonoBehaviour
     private void PlayerHeal(int healing)
     {
         GameManager.gameManager._playerHealth.Heal(healing);
-       
+        _healthBar.SetHealth(GameManager.gameManager._playerHealth.Health);
+
     }
 }

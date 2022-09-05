@@ -4,15 +4,8 @@ using UnityEngine;
 
 public interface ICollectable 
 {
-    
-    void Start()
-    {
-        
-    }
 
-    
-    void Update()
-    {
-        
-    }
+    void AddScore();
+    void AddHealth();
+
 }
