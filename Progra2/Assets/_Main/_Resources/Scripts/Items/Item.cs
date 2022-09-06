@@ -11,6 +11,7 @@ public class Item : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
+            Debug.Log("Item Collected!");
             Destroy(gameObject);
         }
     }
