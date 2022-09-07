@@ -1,18 +1,20 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IStackTDA : MonoBehaviour
+public interface IStackTDA 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //Ejemplo de la clase del PROFESOR
+    void InicializarPila();
+    // siempre que la pila est´e inicializada
+    void Apilar(int x);
+    // siempre que la pila est´e inicializada y no est´e vac´ıa
+    void Desapilar();
+    // siempre que la pila est´e inicializada
+    bool PilaVacia();
+    // siempre que la pila est´e inicializada y no est´e vac´ıa
+    int Tope();
+    void ImprimoPila();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
