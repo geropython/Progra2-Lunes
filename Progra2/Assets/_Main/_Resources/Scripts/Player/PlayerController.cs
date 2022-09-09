@@ -11,35 +11,45 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     private Vector2 movement;
     private float moveLimiter = 0.7f;
- 
+
     //-----------------METHODS----------------------
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        //Gets the rigidBody and Animator references of the player.
+        rb = this.GetComponent<Rigidbody2D>();
+        animator = this.GetComponent<Animator>();
+    }
 
     void Update()
     {
         //Movement controller
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        movement.x = Input.GetAxisRaw("Horizontal");     
+        movement.y = Input.GetAxisRaw("Vertical");      
 
         // Directional Animations
-        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Horizontal", movement.x);      
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
-
+        
+        
         //INPUT TESTING DAMAGE AND HEALTH SYSTEM
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             PlayerTakeDamage(20);
             Debug.Log(GameManager.gameManager._playerHealth.Health);
 
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.H))
         {
             PlayerHeal(20);
             Debug.Log(GameManager.gameManager._playerHealth.Health);
 
         }
+     
 
     }
 
