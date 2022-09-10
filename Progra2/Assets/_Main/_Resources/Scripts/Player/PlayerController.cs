@@ -8,9 +8,13 @@ public class PlayerController : MonoBehaviour
    [SerializeField] private float moveSpeed = 5;
    [SerializeField] Animator animator;
    [SerializeField] HealthBarScript _healthBar;
-    public Rigidbody2D rb;
-    private Vector2 movement;
-    private float moveLimiter = 0.7f;
+    [SerializeField] private UI_Inventory uiInventory;
+
+   public Rigidbody2D rb;
+   private Vector2 movement;
+   private float moveLimiter = 0.7f;
+   private Inventory inventory;
+
 
     //-----------------METHODS----------------------
 
@@ -33,26 +37,24 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
-        
-        
         //INPUT TESTING DAMAGE AND HEALTH SYSTEM
         if (Input.GetKeyDown(KeyCode.Q))
         {
             PlayerTakeDamage(20);
             Debug.Log(GameManager.gameManager._playerHealth.Health);
-
         }
 
         if (Input.GetKeyDown(KeyCode.H))
         {
             PlayerHeal(20);
             Debug.Log(GameManager.gameManager._playerHealth.Health);
-
         }
-     
-
     }
-
+    private void Awake()
+    {
+        inventory = new Inventory();
+        uiInventory.SetInventory(inventory);
+    }
     //For Physics stuff
     private void FixedUpdate()
     {
@@ -70,14 +72,11 @@ public class PlayerController : MonoBehaviour
     {
         GameManager.gameManager._playerHealth.Damage(damage);
         _healthBar.SetHealth(GameManager.gameManager._playerHealth.Health);
-        
     }
-
 
     private void PlayerHeal(int healing)
     {
         GameManager.gameManager._playerHealth.Heal(healing);
         _healthBar.SetHealth(GameManager.gameManager._playerHealth.Health);
-
     }
 }
