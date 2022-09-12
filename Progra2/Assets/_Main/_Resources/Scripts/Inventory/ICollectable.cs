@@ -5,7 +5,6 @@ using UnityEngine;
 public interface ICollectable 
 {
 
-    void AddScore();
-    void AddHealth();
+    void Collect();
 
 }
