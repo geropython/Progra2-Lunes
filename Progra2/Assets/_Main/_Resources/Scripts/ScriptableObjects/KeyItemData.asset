@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 157f3476303a2f44aad6083cc7e8752a, type: 3}
-  m_Name: Crystals
+  m_Script: {fileID: 11500000, guid: 9be9e86742910a54499b499089269b77, type: 3}
+  m_Name: KeyItemData
   m_EditorClassIdentifier: 
-  name: CrystalCollectable
-  score: 10
-  description: A small crystal placed in World
-  image: {fileID: 662554416, guid: bb781a131e543e746bc651ebd998669c, type: 3}
+  displayName: 
+  icon: {fileID: 0}

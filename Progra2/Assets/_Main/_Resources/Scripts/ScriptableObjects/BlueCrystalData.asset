@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BlueCrystalData
   m_EditorClassIdentifier: 
   displayName: BlueCrystal
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 2bd5b77b4790328469dcd5c09cd236f0, type: 3}
