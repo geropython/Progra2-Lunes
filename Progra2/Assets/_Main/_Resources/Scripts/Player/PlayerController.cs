@@ -8,13 +8,10 @@ public class PlayerController : MonoBehaviour
    [SerializeField] private float moveSpeed = 5;
    [SerializeField] Animator animator;
    [SerializeField] HealthBarScript _healthBar;
-    [SerializeField] private UI_Inventory uiInventory;
 
    public Rigidbody2D rb;
    private Vector2 movement;
    private float moveLimiter = 0.7f;
-   private Inventory inventory;
-
 
     //-----------------METHODS----------------------
 
@@ -52,9 +49,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Awake()
     {
-        //inventory = new Inventory();
-        uiInventory.SetInventory(inventory);
-        //uiInventory.SetPlayer(this);
+        
     }
     //For Physics stuff
     private void FixedUpdate()
@@ -79,31 +74,5 @@ public class PlayerController : MonoBehaviour
     {
         GameManager.gameManager._playerHealth.Heal(healing);
         _healthBar.SetHealth(GameManager.gameManager._playerHealth.Health);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        ItemWorld itemWorld = collision.GetComponent<ItemWorld>();
-        if (itemWorld != null)
-        {
-            //pueda tocar objeto
-            inventory.AddItem(itemWorld.GetItem());
-            itemWorld.DestroySelf();
-        }
-    }
-
-    private void UseItem(Item item)
-    {
-        switch (item.itemType)
-        {
-            case Item.ItemType.HealthPotion:
-                //FlashGreen();
-                inventory.RemoveItem(new Item { itemType = Item.ItemType.HealthPotion, amount = 1});
-                break;
-            case Item.ItemType.ManaPotion:
-                //FlashBlue();
-                inventory.RemoveItem(new Item { itemType = Item.ItemType.ManaPotion, amount = 1 });
-                break;
-        }
     }
 }
