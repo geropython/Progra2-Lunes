@@ -145,6 +145,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 198ec70008bf1e34f908e826a03a11ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  stoppingDistance: 2
-  distanceBetween: 0.5
+  speed: 1.5
+  lineOfSight: 3

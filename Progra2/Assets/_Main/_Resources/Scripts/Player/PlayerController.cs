@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
    public Rigidbody2D rb;
    private Vector2 movement;
    private float moveLimiter = 0.7f;
+   private float attackTime = .50f;
+   private float attackCounter = .50f;
+   private bool isAttacking;
 
     //-----------------METHODS----------------------
 
@@ -25,15 +28,44 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+      
+
         //Movement controller
         movement.x = Input.GetAxisRaw("Horizontal");     
-        movement.y = Input.GetAxisRaw("Vertical");      
+        movement.y = Input.GetAxisRaw("Vertical");
+
+        //-------------ATTACK FUNCTION---------------------------------
+        //STOPS attack animation for Looping
+
+        //Attack Input and triggers Animation:
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            attackCounter = attackTime;
+            animator.SetBool("IsAttacking", true);
+            isAttacking = true;
+
+        }
+
+        if (isAttacking)
+        {         
+            attackCounter -= Time.deltaTime;
+            if(attackCounter <= 0)
+            {
+                animator.SetBool("IsAttacking", false);
+                isAttacking = false;
+            }
+        }
+
+
+        
 
         // Directional Animations
         animator.SetFloat("Horizontal", movement.x);      
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
+       
+        //-------------HEALTH AND DAMAGE FUNCTIONS--------------------
         //INPUT TESTING DAMAGE AND HEALTH SYSTEM
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -47,10 +79,8 @@ public class PlayerController : MonoBehaviour
             Debug.Log(GameManager.gameManager._playerHealth.Health);
         }
     }
-    private void Awake()
-    {
-        
-    }
+    
+
     //For Physics stuff
     private void FixedUpdate()
     {
@@ -61,6 +91,7 @@ public class PlayerController : MonoBehaviour
             movement.y *= moveLimiter;
         }
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+       
     }
 
     //--------- HEALTH SYSTEM-------------

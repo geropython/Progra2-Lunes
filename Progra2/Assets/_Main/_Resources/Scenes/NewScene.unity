@@ -8611,14 +8611,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1507979022}
     m_Modifications:
-    - target: {fileID: 865422167, guid: 40255573585277141951553d982ce3b0, type: 3}
-      propertyPath: lineOfSight
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 865422167, guid: 40255573585277141951553d982ce3b0, type: 3}
-      propertyPath: distanceBetween
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 145619501773140970, guid: 40255573585277141951553d982ce3b0, type: 3}
       propertyPath: m_Name
       value: EnemyBat
