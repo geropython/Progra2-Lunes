@@ -26,7 +26,6 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-
     private GameObject CreateNewObject(GameObject gameObject)
     {
         GameObject newGO = Instantiate(gameObject);
@@ -45,7 +44,6 @@ public class ObjectPool : MonoBehaviour
             Queue<GameObject> newObjectQueue = new Queue<GameObject>();
             newObjectQueue.Enqueue(gameObject);
             objectPool.Add(gameObject.name, newObjectQueue);
-
         }
 
         gameObject.SetActive(false);
