@@ -9,7 +9,7 @@ public class EnemyScript : MonoBehaviour
     private Transform player;
     [SerializeField] private float lineOfSight;
     private float distance;
-    
+
     //METHODS--------------------------------
     void Start()
     {
