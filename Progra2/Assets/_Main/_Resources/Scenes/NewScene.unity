@@ -842,7 +842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.509434, g: 0.29561904, b: 0.11774654, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1189,8 +1189,8 @@ Tilemap:
   - first: {x: 1, y: -12, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 34
-      m_TileSpriteIndex: 30
+      m_TileIndex: 32
+      m_TileSpriteIndex: 25
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1439,8 +1439,8 @@ Tilemap:
   - first: {x: 1, y: -11, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 34
-      m_TileSpriteIndex: 30
+      m_TileIndex: 12
+      m_TileSpriteIndex: 15
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -5842,8 +5842,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 322a91a3c211c0f44ac993ca83801446, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 75eb3f1ec4349c749b6a7dbbfe08e95c, type: 2}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: f0467cfe49becc147a73d7d31046eb3e, type: 2}
   - m_RefCount: 11
     m_Data: {fileID: 11400000, guid: f6c86785b876c1f4a90e4a88cc700e39, type: 2}
   - m_RefCount: 2
@@ -5882,11 +5882,11 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 429508ed7101e0b47ad47ac39ff7792b, type: 2}
   - m_RefCount: 181
     m_Data: {fileID: 11400000, guid: 3b35ee2c06369734596d799ed6d5ae62, type: 2}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: fad7098720b1f7b4da2f5a494b58ce17, type: 2}
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: d17b228f4f9afe44aa52e0ad0e8c3499, type: 2}
-  - m_RefCount: 168
+  - m_RefCount: 166
     m_Data: {fileID: 11400000, guid: 0c1f864765db97048871e7ba1417b4f6, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 673e7d03761dd0945bf37216b75ac7d1, type: 2}
@@ -5921,8 +5921,8 @@ Tilemap:
     m_Data: {fileID: 21300038, guid: 61bda409e13a345bcb9e55db18b42f74, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 21300058, guid: 61bda409e13a345bcb9e55db18b42f74, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 6961584852583578572, guid: ca1fe683d8872314481b6dbcd87cb1d1, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 21300024, guid: 61bda409e13a345bcb9e55db18b42f74, type: 3}
   - m_RefCount: 4
@@ -5941,8 +5941,8 @@ Tilemap:
     m_Data: {fileID: 21300054, guid: 61bda409e13a345bcb9e55db18b42f74, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 21300052, guid: 61bda409e13a345bcb9e55db18b42f74, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -8859803436593824983, guid: ca1fe683d8872314481b6dbcd87cb1d1, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 21300104, guid: 61bda409e13a345bcb9e55db18b42f74, type: 3}
   - m_RefCount: 2
@@ -5951,7 +5951,7 @@ Tilemap:
     m_Data: {fileID: 21300004, guid: 61bda409e13a345bcb9e55db18b42f74, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300066, guid: 61bda409e13a345bcb9e55db18b42f74, type: 3}
-  - m_RefCount: 349
+  - m_RefCount: 347
     m_Data: {fileID: 21300002, guid: 61bda409e13a345bcb9e55db18b42f74, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 21300094, guid: 61bda409e13a345bcb9e55db18b42f74, type: 3}
@@ -7354,7 +7354,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: aa03ef034e0edcc4d89a847fd5eda2d4, type: 3}
+  m_Sprite: {fileID: -661833537, guid: ceb234b92accd50458bf10908f11e936, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8191,7 +8191,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ': 9999'
+  m_text: ' 9999'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 54741d76f27d0a04cbf38cf13f1d5b45, type: 2}
   m_sharedMaterial: {fileID: 758640689366391518, guid: 54741d76f27d0a04cbf38cf13f1d5b45, type: 2}
