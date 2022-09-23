@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Top_Middle_Dungeon_Door_Opened
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: -5767162948771900228, guid: ca1fe683d8872314481b6dbcd87cb1d1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7852008, g: 0.6179246, b: 1, a: 1}
   m_Transform:
     e00: 1
     e01: 0

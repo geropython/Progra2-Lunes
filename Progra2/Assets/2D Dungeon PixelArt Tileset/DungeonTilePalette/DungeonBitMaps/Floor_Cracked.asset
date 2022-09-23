@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Floor_Cracked
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: -9141938605990679566, guid: ca1fe683d8872314481b6dbcd87cb1d1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8207547, g: 0.6465379, b: 0.8131206, a: 1}
   m_Transform:
     e00: 1
     e01: 0

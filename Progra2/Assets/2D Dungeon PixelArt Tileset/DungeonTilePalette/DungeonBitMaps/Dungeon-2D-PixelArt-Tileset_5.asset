@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dungeon-2D-PixelArt-Tileset_5
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 2056942473736830267, guid: ca1fe683d8872314481b6dbcd87cb1d1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7214172, g: 0.43867922, b: 1, a: 1}
   m_Transform:
     e00: 1
     e01: 0

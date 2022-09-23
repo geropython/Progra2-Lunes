@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
+    
+    //Dictionary using Queue for the object to Pool.
     private Dictionary<string, Queue<GameObject>> objectPool = new Dictionary<string, Queue<GameObject>>();
 
     public GameObject GetObject(GameObject gameObject)
@@ -14,7 +16,7 @@ public class ObjectPool : MonoBehaviour
                 return CreateNewObject(gameObject);
             else
             {
-                GameObject _object = objectList.Dequeue();
+                GameObject _object = objectList.Dequeue();    //Dequeue Method
                 _object.SetActive(true);
                 return _object;
             }
@@ -33,11 +35,11 @@ public class ObjectPool : MonoBehaviour
         return newGO;
     }
 
-    public void ReturnGameObject(GameObject gameObject)
+    public void ReturnGameObject(GameObject gameObject)   //Needs a Return Script of the Object to pool to work
     {
         if (objectPool.TryGetValue(gameObject.name, out Queue<GameObject> objectList))
         {
-            objectList.Enqueue(gameObject);
+            objectList.Enqueue(gameObject);    //Enqueue Method
         }
         else
         {
