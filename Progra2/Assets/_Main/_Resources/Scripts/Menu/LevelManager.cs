@@ -9,6 +9,17 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    //void Level2()
+    //{
+    //    SceneManager.LoadScene(2);
+    //}
+
+    //void Level3()
+    //{
+    //    SceneManager.LoadScene(3);
+    //}
+
     public void MainMenu()
     {
         SceneManager.LoadScene(0);

@@ -34,8 +34,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-      
-
         //Movement controller
         movement.x = Input.GetAxisRaw("Horizontal");     
         movement.y = Input.GetAxisRaw("Vertical");
@@ -55,7 +53,6 @@ public class PlayerController : MonoBehaviour
             attackCounter = attackTime;
             animator.SetBool("IsAttacking", true);
             isAttacking = true;
-
         }
 
         if (isAttacking)
@@ -68,14 +65,10 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-
-        
-
         // Directional Animations
         animator.SetFloat("Horizontal", movement.x);      
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
-
        
         //-------------HEALTH AND DAMAGE FUNCTIONS--------------------
         //INPUT TESTING DAMAGE AND HEALTH SYSTEM
@@ -91,7 +84,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log(GameManager.gameManager._playerHealth.Health);
         }
     }
-    
 
     //For Physics stuff
     private void FixedUpdate()
@@ -103,7 +95,6 @@ public class PlayerController : MonoBehaviour
             movement.y *= moveLimiter;
         }
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -113,7 +104,6 @@ public class PlayerController : MonoBehaviour
             PlayerTakeDamage(10);
         }
     }
-
     //--------- HEALTH SYSTEM-------------
     
     //DAMAGE PLAYER
