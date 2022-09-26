@@ -8,12 +8,12 @@ public class PlayerController : MonoBehaviour
    [SerializeField] private float moveSpeed = 5;
    [SerializeField] Animator animator;
    [SerializeField] HealthBarScript _healthBar;
+   [SerializeField] private float attackTime = .50f;
+   [SerializeField] private float attackCounter = .50f;
 
    public Rigidbody2D rb;
    private Vector2 movement;
    private float moveLimiter = 0.7f;
-   private float attackTime = .50f;
-   private float attackCounter = .50f;
    private bool isAttacking;
 
     //-----------------METHODS----------------------
