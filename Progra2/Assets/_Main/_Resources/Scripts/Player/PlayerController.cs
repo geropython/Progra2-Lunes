@@ -16,13 +16,14 @@ public class PlayerController : MonoBehaviour
    [SerializeField] private float attackRange;
    [SerializeField] private LayerMask enemies;
    [SerializeField] private int damage;
+   private float time;
    
    public Rigidbody2D rb;
    private Vector2 movement;
    private float moveLimiter = 0.7f;
    private bool isAttacking;
 
-    //-----------------METHODS----------------------
+   //-----------------METHODS----------------------
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
             attackCounter = attackTime;
             animator.SetBool("IsAttacking", true);
             isAttacking = true;
+           
         }
 
         if (isAttacking)

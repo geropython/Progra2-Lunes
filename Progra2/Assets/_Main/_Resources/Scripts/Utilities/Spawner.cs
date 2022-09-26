@@ -6,16 +6,16 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField]
-    private float timeToSpawn = 10f;
+    private float timeToSpawn = 5f; 
     private float timeSinceSpawn;
-   private ObjectPool objectPool;
+   private ObjectPool _objectPool;
    [SerializeField]
    private GameObject prefab;
 
 
    private void Start()
    {
-       objectPool = FindObjectOfType<ObjectPool>();
+       _objectPool = FindObjectOfType<ObjectPool>();
    }
 
 
@@ -24,8 +24,8 @@ public class Spawner : MonoBehaviour
        timeSinceSpawn += Time.deltaTime;
        if ( timeSinceSpawn >= timeToSpawn)
        {
-           GameObject newEnemy = objectPool.GetObject(prefab);
-           newEnemy.transform.position = this.transform.position;
+           GameObject newEnemy = _objectPool.GetObject(prefab); 
+           newEnemy.transform.position = this.transform.position;  
            timeSinceSpawn = 0f;
        }
    }

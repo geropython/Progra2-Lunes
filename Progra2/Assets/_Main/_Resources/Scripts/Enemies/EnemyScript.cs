@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
@@ -11,8 +12,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private float lineOfSight;
     private float _distance;
     [SerializeField] private int health;
-
-
+    
     //METHODS--------------------------------
     void Start()
     {
@@ -26,10 +26,12 @@ public class EnemyScript : MonoBehaviour
         //ENEMY HEALTH CHECK:
         if (health <= 0)
         {
-            Destroy(gameObject);
+            //Destroy Enemy
+            Destroy(this.gameObject);
 
-        } //Checks if the Player is in range, and then chase it.
-
+        }
+       
+        //Checks if the Player is in range, and then chase it.
         float distanceFromPlayer = Vector2.Distance(_player.position, transform.position);
 
             if (distanceFromPlayer < lineOfSight)
@@ -53,5 +55,7 @@ public class EnemyScript : MonoBehaviour
             health -= damage;
             Debug.Log("Enemie DAMAGED!");
         }
+        
+        
     }
 

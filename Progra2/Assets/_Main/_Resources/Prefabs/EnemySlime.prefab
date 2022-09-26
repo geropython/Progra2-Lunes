@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7444478975830361324}
   - component: {fileID: 1210206015}
   - component: {fileID: 1210206016}
-  - component: {fileID: 1313693260518709903}
   m_Layer: 8
   m_Name: EnemySlime
   m_TagString: Enemy
@@ -149,15 +148,3 @@ MonoBehaviour:
   speed: 0.5
   lineOfSight: 2.5
   health: 120
---- !u!114 &1313693260518709903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8758438947912099638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e4d76a459333c345b7de1ab008b9bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
