@@ -148,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.5
   lineOfSight: 2.5
+  health: 120
 --- !u!114 &1313693260518709903
 MonoBehaviour:
   m_ObjectHideFlags: 0

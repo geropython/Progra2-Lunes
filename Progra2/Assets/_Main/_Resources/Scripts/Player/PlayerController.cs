@@ -11,6 +11,12 @@ public class PlayerController : MonoBehaviour
    [SerializeField] private float attackTime = .50f;
    [SerializeField] private float attackCounter = .50f;
 
+   //Attack Values and Variables
+   public Transform attackPosition;
+   [SerializeField] private float attackRange;
+   [SerializeField] private LayerMask enemies;
+   [SerializeField] private int damage;
+   
    public Rigidbody2D rb;
    private Vector2 movement;
    private float moveLimiter = 0.7f;
@@ -40,6 +46,12 @@ public class PlayerController : MonoBehaviour
         //Attack Input and triggers Animation:
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            
+            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPosition.position, attackRange, enemies);
+            for (int i = 0; i < enemiesToDamage.Length; i++)
+            {
+                enemiesToDamage[i].GetComponent<EnemyScript>().TakeDamage(damage);
+            }
             attackCounter = attackTime;
             animator.SetBool("IsAttacking", true);
             isAttacking = true;
@@ -103,15 +115,25 @@ public class PlayerController : MonoBehaviour
     }
 
     //--------- HEALTH SYSTEM-------------
+    
+    //DAMAGE PLAYER
     private void PlayerTakeDamage(int damage)
     {
         GameManager.gameManager._playerHealth.Damage(damage);
         _healthBar.SetHealth(GameManager.gameManager._playerHealth.Health);
     }
 
+    //HEAL PLAYER
     private void PlayerHeal(int healing)
     {
         GameManager.gameManager._playerHealth.Heal(healing);
         _healthBar.SetHealth(GameManager.gameManager._playerHealth.Health);
+    }
+    
+    //For The Attack Damage and Range:
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPosition.position, attackRange);
     }
 }

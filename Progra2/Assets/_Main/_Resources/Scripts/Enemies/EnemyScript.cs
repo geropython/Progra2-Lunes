@@ -1,40 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
     //Enemy variables
-    [SerializeField] private float speed;  
-    private Transform player;
+    [SerializeField] private float speed;
+    private Transform _player;
     [SerializeField] private float lineOfSight;
-    private float distance;
+    private float _distance;
+    [SerializeField] private int health;
+
 
     //METHODS--------------------------------
     void Start()
     {
         //Gets the reference to the player with a Tag.
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
 
     void Update()
     {
-        //Checks if the Player´s in range, and then chase it.
-        float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
-
-        if(distanceFromPlayer < lineOfSight)
+        //ENEMY HEALTH CHECK:
+        if (health <= 0)
         {
-            transform.position = Vector2.MoveTowards(this.transform.position, player.position, speed * Time.deltaTime);
+            Destroy(gameObject);
+
+        } //Checks if the Player is in range, and then chase it.
+
+        float distanceFromPlayer = Vector2.Distance(_player.position, transform.position);
+
+            if (distanceFromPlayer < lineOfSight)
+            {
+                transform.position =
+                    Vector2.MoveTowards(this.transform.position, _player.position, speed * Time.deltaTime);
+            }
+
+    }
+
+        //Gizmos for the enemy Line of sight view
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, lineOfSight);
+
         }
-          
+
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+            Debug.Log("Enemie DAMAGED!");
+        }
     }
 
-    //Gizmos for the enemy Line of sight view
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, lineOfSight);
-
-    }
-}

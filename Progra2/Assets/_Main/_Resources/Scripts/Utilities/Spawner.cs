@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour
    private void Update()
    {
        timeSinceSpawn += Time.deltaTime;
-       if (timeSinceSpawn >= timeToSpawn)
+       if ( timeSinceSpawn >= timeToSpawn)
        {
            GameObject newEnemy = objectPool.GetObject(prefab);
            newEnemy.transform.position = this.transform.position;

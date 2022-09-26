@@ -17,7 +17,7 @@ public class ObjectPool : MonoBehaviour
             else
             {
                 GameObject _object = objectList.Dequeue();    //Dequeue Method
-                _object.SetActive(true);
+               // _object.SetActive(true);
                 return _object;
             }
         }
