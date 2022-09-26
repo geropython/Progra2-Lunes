@@ -41,12 +41,25 @@ public class PlayerController : MonoBehaviour
 
         //-------------ATTACK FUNCTION---------------------------------
         //STOPS attack animation for Looping
-
+        if (isAttacking)  // ADD "&&" CONDITION WITH CAN´T ATTACK
+        {         
+            attackCounter -= Time.deltaTime;
+            if(attackCounter <= 0)
+            {
+                animator.SetBool("IsAttacking", false);
+                isAttacking = false;
+            }
+        }
         //Attack Input and triggers Animation:
+        //USE CORUTINE PLAYERATTACK() TO EXECUTE THE ANIMATION AND ADD A TIMER BETWEEN INPUTS
+        //DO NOT USE OVERLAPCIRCLEALL, INSTEAD USE OVERLAPNONALLOC
+        // MAKE AN ARRAYS LIST BEFORE THE OVERLAPNONALLOC AND NOT AFTER EVERY FRAME OF EXECUTION.
+        //FOR CORUTINE: USE YIELDRETURNWAITFORSECONDS AND IENUMERATOR.
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             
-            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPosition.position, attackRange, enemies);
+            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPosition.position, attackRange, enemies); //CHECK THIS
             for (int i = 0; i < enemiesToDamage.Length; i++)
             {
                 enemiesToDamage[i].GetComponent<EnemyScript>().TakeDamage(damage);
@@ -57,15 +70,7 @@ public class PlayerController : MonoBehaviour
            
         }
 
-        if (isAttacking)
-        {         
-            attackCounter -= Time.deltaTime;
-            if(attackCounter <= 0)
-            {
-                animator.SetBool("IsAttacking", false);
-                isAttacking = false;
-            }
-        }
+        
 
         // Directional Animations
         animator.SetFloat("Horizontal", movement.x);      
