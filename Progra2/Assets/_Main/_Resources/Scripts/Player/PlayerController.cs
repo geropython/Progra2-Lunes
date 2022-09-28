@@ -10,6 +10,12 @@ public class PlayerController : MonoBehaviour
    [SerializeField] HealthBarScript _healthBar;
    [SerializeField] private float attackTime = .50f;
    [SerializeField] private float attackCounter = .50f;
+  
+   public Rigidbody2D rb;
+   
+   private Vector2 movement;
+   private float moveLimiter = 0.7f;
+   private bool isAttacking;
 
    //Attack Values and Variables
    public Transform attackPosition;
@@ -23,14 +29,13 @@ public class PlayerController : MonoBehaviour
    public float attackRate = 2f;
    private float nextAttackTime = 0f;
    
-   public Rigidbody2D rb;
-   private Vector2 movement;
-   private float moveLimiter = 0.7f;
-   private bool isAttacking;
+   
+   //CACHÉ STRINGS
    private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
    private static readonly int Horizontal = Animator.StringToHash("Horizontal");
    private static readonly int Vertical = Animator.StringToHash("Vertical");
    private static readonly int Speed = Animator.StringToHash("Speed");
+   private static readonly int Attack = Animator.StringToHash("Attack");
 
    //-----------------METHODS----------------------
 
@@ -52,7 +57,7 @@ public class PlayerController : MonoBehaviour
             enemies[i].GetComponent<EnemyScript>().TakeDamage(damage);
         }
         attackCounter = attackTime;
-        animator.SetBool(IsAttacking, true);
+        animator.SetTrigger(Attack);  //---> New Animator attack system.
         isAttacking = true;
 
         yield return new WaitForSeconds(1);
@@ -65,17 +70,6 @@ public class PlayerController : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
 
         //-------------ATTACK FUNCTION---------------------------------
-        //STOPS attack animation for Looping
-        
-        if (isAttacking )  // ADD "&&" CONDITION WITH CAN´T ATTACK
-        {         
-            attackCounter -= Time.deltaTime;
-            if(attackCounter <= 0)
-            {
-                animator.SetBool(IsAttacking, false);
-                isAttacking = false;
-            }
-        }
         
         //Attack Input and triggers Animation:
 
@@ -85,13 +79,12 @@ public class PlayerController : MonoBehaviour
             {
                 //Starts the Coroutine of Attack:
                 StartCoroutine(PlayerAttack());
-                //nextAttackTime = Time.time + 1f / attackRate;
-                
+                nextAttackTime = Time.time + 1f / attackRate;
+              
             }
-           
+
         }
         
-
         // Directional Animations
         animator.SetFloat(Horizontal, movement.x);      
         animator.SetFloat(Vertical, movement.y);
@@ -147,7 +140,7 @@ public class PlayerController : MonoBehaviour
         _healthBar.SetHealth(GameManager.gameManager._playerHealth.Health);
     }
     
-    //For The Attack Damage and Range:
+    //For The Attack Damage and Range Visualization:
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

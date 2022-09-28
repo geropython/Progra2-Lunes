@@ -283,17 +283,17 @@ MonoBehaviour:
   _healthBar: {fileID: 1297291978}
   attackTime: 0.5
   attackCounter: 0.5
+  rb: {fileID: 215636037}
   attackPosition: {fileID: 461895575}
-  attackRange: 1.07
+  attackRange: 1.09
   enemies:
   - {fileID: 3974724137756077867, guid: 40255573585277141951553d982ce3b0, type: 3}
   - {fileID: 7444478975830361324, guid: 905ce0d6e01939b49b3f2bdfb0a89e03, type: 3}
   enemiesHit:
     serializedVersion: 2
     m_Bits: 256
-  damage: 30
+  damage: 50
   attackRate: 2
-  rb: {fileID: 215636037}
 --- !u!114 &215636042
 MonoBehaviour:
   m_ObjectHideFlags: 0
