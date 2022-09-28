@@ -14,14 +14,23 @@ public class PlayerController : MonoBehaviour
    //Attack Values and Variables
    public Transform attackPosition;
    [SerializeField] private float attackRange;
-   [SerializeField] private LayerMask enemies;
+   [SerializeField] private Collider2D[] enemies;
+   [SerializeField] private LayerMask enemiesHit;
    [SerializeField] private int damage;
+ 
+   // NEW ATTACK TIMERS
    private float time;
+   public float attackRate = 2f;
+   private float nextAttackTime = 0f;
    
    public Rigidbody2D rb;
    private Vector2 movement;
    private float moveLimiter = 0.7f;
    private bool isAttacking;
+   private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
+   private static readonly int Horizontal = Animator.StringToHash("Horizontal");
+   private static readonly int Vertical = Animator.StringToHash("Vertical");
+   private static readonly int Speed = Animator.StringToHash("Speed");
 
    //-----------------METHODS----------------------
 
@@ -31,6 +40,22 @@ public class PlayerController : MonoBehaviour
         //Gets the rigidBody and Animator references of the player.
         rb = this.GetComponent<Rigidbody2D>();
         animator = this.GetComponent<Animator>();
+        
+    }
+    
+    //COROUTINE FOR ATTACKING:
+    IEnumerator PlayerAttack()
+    {
+        int  enemiesToDamage = Physics2D.OverlapCircleNonAlloc(attackPosition.position, attackRange, enemies, enemiesHit ); //CHECK THIS
+        for (int i = 0; i < enemiesToDamage; i++)
+        {
+            enemies[i].GetComponent<EnemyScript>().TakeDamage(damage);
+        }
+        attackCounter = attackTime;
+        animator.SetBool(IsAttacking, true);
+        isAttacking = true;
+
+        yield return new WaitForSeconds(1);
     }
 
     void Update()
@@ -41,41 +66,36 @@ public class PlayerController : MonoBehaviour
 
         //-------------ATTACK FUNCTION---------------------------------
         //STOPS attack animation for Looping
-        if (isAttacking)  // ADD "&&" CONDITION WITH CAN´T ATTACK
+        
+        if (isAttacking )  // ADD "&&" CONDITION WITH CAN´T ATTACK
         {         
             attackCounter -= Time.deltaTime;
             if(attackCounter <= 0)
             {
-                animator.SetBool("IsAttacking", false);
+                animator.SetBool(IsAttacking, false);
                 isAttacking = false;
             }
         }
-        //Attack Input and triggers Animation:
-        //USE CORUTINE PLAYERATTACK() TO EXECUTE THE ANIMATION AND ADD A TIMER BETWEEN INPUTS
-        //DO NOT USE OVERLAPCIRCLEALL, INSTEAD USE OVERLAPNONALLOC
-        // MAKE AN ARRAYS LIST BEFORE THE OVERLAPNONALLOC AND NOT AFTER EVERY FRAME OF EXECUTION.
-        //FOR CORUTINE: USE YIELDRETURNWAITFORSECONDS AND IENUMERATOR.
         
+        //Attack Input and triggers Animation:
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            
-            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPosition.position, attackRange, enemies); //CHECK THIS
-            for (int i = 0; i < enemiesToDamage.Length; i++)
+            if (Time.time >= nextAttackTime)
             {
-                enemiesToDamage[i].GetComponent<EnemyScript>().TakeDamage(damage);
+                //Starts the Coroutine of Attack:
+                StartCoroutine(PlayerAttack());
+                //nextAttackTime = Time.time + 1f / attackRate;
+                
             }
-            attackCounter = attackTime;
-            animator.SetBool("IsAttacking", true);
-            isAttacking = true;
            
         }
-
         
 
         // Directional Animations
-        animator.SetFloat("Horizontal", movement.x);      
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
+        animator.SetFloat(Horizontal, movement.x);      
+        animator.SetFloat(Vertical, movement.y);
+        animator.SetFloat(Speed, movement.sqrMagnitude);
        
         //-------------HEALTH AND DAMAGE FUNCTIONS--------------------
         //INPUT TESTING DAMAGE AND HEALTH SYSTEM
