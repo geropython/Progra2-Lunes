@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class Collector : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
-
+    [SerializeField] private AudioSource pickUpSound;
+    
     public int crystals;
 
     private void Start()
@@ -26,6 +27,7 @@ public class Collector : MonoBehaviour
         if (collectable != null)
         {
             collectable.Collect();
+            pickUpSound.Play(); // needs to be in Scriptable object
             crystals++; 
         }
     }

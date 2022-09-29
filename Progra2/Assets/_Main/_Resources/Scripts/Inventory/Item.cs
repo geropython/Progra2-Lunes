@@ -1,20 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
-public class Item : MonoBehaviour
+using UnityEngine.SceneManagement;
+namespace _Main._Resources.Scripts.Inventory
 {
-    [SerializeField] private GameObject KeyIcon;
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class Item : MonoBehaviour
     {
-        if (collision.gameObject.tag == "Player")
+        [SerializeField] private GameObject KeyIcon;
+
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            KeyIcon.SetActive(true);
-            Debug.Log("Collected");
-            Destroy(this.gameObject);
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                KeyIcon.SetActive(true);
+                SceneManager.LoadScene("Level 1");
+                Debug.Log("Collected");
+                Destroy(this.gameObject);
+            }
         }
     }
 }

@@ -1,25 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using UnityEngine;
 
-[Serializable]
-public class InventoryItem : MonoBehaviour
+namespace _Main._Resources.Scripts.Inventory
 {
-    public ItemData itemData;
-    public int stackSize;
+    [Serializable]
+    public class InventoryItem : MonoBehaviour
+    {
+        public ItemData itemData;
+        public int stackSize;
 
-    public InventoryItem(ItemData item)
-    {
-        itemData = item;
-        AddToStack();
-    }
-    public void AddToStack()
-    {
-        stackSize++;
-    }
-    public void RemoveFromStack()
-    {
-        stackSize--;
+        public InventoryItem(ItemData item)
+        {
+            itemData = item;
+            AddToStack();
+        }
+        public void AddToStack()
+        {
+            stackSize++;
+        }
+        public void RemoveFromStack()
+        {
+            stackSize--;
+        }
     }
 }

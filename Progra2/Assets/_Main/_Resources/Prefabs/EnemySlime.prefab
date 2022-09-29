@@ -148,3 +148,4 @@ MonoBehaviour:
   speed: 0.5
   lineOfSight: 2.5
   health: 120
+  deathSound: {fileID: 8300000, guid: 2d82d2fd16335a743a51a0469d5c9a4e, type: 3}

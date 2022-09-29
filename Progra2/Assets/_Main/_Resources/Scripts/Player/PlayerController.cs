@@ -8,21 +8,23 @@ public class PlayerController : MonoBehaviour
    [SerializeField] private float moveSpeed = 5;
    [SerializeField] Animator animator;
    [SerializeField] HealthBarScript _healthBar;
-   [SerializeField] private float attackTime = .50f;
-   [SerializeField] private float attackCounter = .50f;
-  
-   public Rigidbody2D rb;
    
+   
+   public Rigidbody2D rb;
    private Vector2 movement;
    private float moveLimiter = 0.7f;
-   private bool isAttacking;
 
    //Attack Values and Variables
    public Transform attackPosition;
+   
    [SerializeField] private float attackRange;
    [SerializeField] private Collider2D[] enemies;
    [SerializeField] private LayerMask enemiesHit;
    [SerializeField] private int damage;
+   
+   //AUDIO
+   [SerializeField] private AudioSource hitSound;
+   
  
    // NEW ATTACK TIMERS
    private float time;
@@ -56,10 +58,8 @@ public class PlayerController : MonoBehaviour
         {
             enemies[i].GetComponent<EnemyScript>().TakeDamage(damage);
         }
-        attackCounter = attackTime;
         animator.SetTrigger(Attack);  //---> New Animator attack system.
-        isAttacking = true;
-
+        
         yield return new WaitForSeconds(1);
     }
 
@@ -119,8 +119,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.CompareTag("Enemy"))
         {
+            hitSound.Play();
             PlayerTakeDamage(10);
         }
     }

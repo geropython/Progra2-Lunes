@@ -1,19 +1,19 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace _Main._Resources.Scripts.Inventory
 {
-    public class Crystal : MonoBehaviour, ICollectable
+    public class DarkCrystal : MonoBehaviour, ICollectable
     {
         public static event HandleCristalCollected OnCristalCollected;
         public delegate void HandleCristalCollected(ItemData itemData);
-        public ItemData cristalData;
-
+        public ItemData darkCrystalData;
+        
 
         public void Collect()
         {
             Destroy(gameObject);
-            AudioClip.Instantiate(cristalData);
-            OnCristalCollected?.Invoke(cristalData);
+            OnCristalCollected?.Invoke(darkCrystalData);
         }
     }
 }

@@ -28,6 +28,7 @@ public class EnemyScript : MonoBehaviour
         {
             //Destroy Enemy
             Destroy(this.gameObject);
+            
 
         }
        
