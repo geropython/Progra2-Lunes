@@ -1,54 +1,46 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour
+namespace _Main._Resources.Scripts.Utilities
 {
-    
-    //Dictionary using Queue for the object to Pool.
-    private Dictionary<string, Queue<GameObject>> objectPool = new Dictionary<string, Queue<GameObject>>();
-
-    public GameObject GetObject(GameObject gameObject)
+    public class ObjectPool : MonoBehaviour
     {
-        if (objectPool.TryGetValue(gameObject.name, out Queue<GameObject> objectList))
+
+        [SerializeField] private GameObject enemyPrefab;
+        private readonly Queue<GameObject> _enemyPool = new Queue<GameObject>();
+        [SerializeField]
+        private int poolStartSize = 5;
+
+        private void Start()
         {
-            if (objectList.Count == 0)
-                return CreateNewObject(gameObject);
-            else
+            for (int i = 0; i < poolStartSize; i++)
             {
-                GameObject _object = objectList.Dequeue();    //Dequeue Method
-                _object.SetActive(true);  
-                return _object;
+                GameObject enemy = Instantiate(enemyPrefab);
+                _enemyPool.Enqueue(enemy);    //Enqueue method
+                enemy.SetActive(false);
             }
         }
-        else
-        {
-            return CreateNewObject(gameObject);
 
-        }
-    }
-
-    private GameObject CreateNewObject(GameObject gameObject)
-    {
-        GameObject newGO = Instantiate(gameObject);
-        newGO.name = gameObject.name;
-        return newGO;
-    }
-
-    public void ReturnGameObject(GameObject gameObject)   //Needs a Return Script of the Object to pool to work
-    {
-        if (objectPool.TryGetValue(gameObject.name, out Queue<GameObject> objectList))
+        public GameObject GetEnemy()
         {
-            objectList.Enqueue(gameObject);    //Enqueue Method
-        }
-        else
-        {
-            Queue<GameObject> newObjectQueue = new Queue<GameObject>();
-            newObjectQueue.Enqueue(gameObject);
-            objectPool.Add(gameObject.name, newObjectQueue);
+            if (_enemyPool.Count > 0)
+            {
+                GameObject enemy = _enemyPool.Dequeue();
+                enemy.SetActive(true);
+                return enemy;
+            }
+            else
+            {
+                GameObject enemy = Instantiate(enemyPrefab);
+                return enemy;
+            }
         }
 
-        gameObject.SetActive(false);
+        public void ReturnEnemy(GameObject enemy)
+        {
+            _enemyPool.Enqueue(enemy);   //Enqueue Method
+            enemy.SetActive(false);   //Deactivates the enemy
+        }
     }
 }
     

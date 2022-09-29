@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Main._Resources.Scripts.Enemies;
+using _Main._Resources.Scripts.Utilities;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour

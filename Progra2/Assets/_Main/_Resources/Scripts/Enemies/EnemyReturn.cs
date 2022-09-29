@@ -1,20 +1,23 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using _Main._Resources.Scripts.Utilities;
 using UnityEngine;
 
-public class EnemyReturn : MonoBehaviour
+namespace _Main._Resources.Scripts.Enemies
 {
-    private ObjectPool objectPool;
-    
-    private void Start()
+    public class EnemyReturn : MonoBehaviour
     {
-        objectPool = FindObjectOfType<ObjectPool>();
-    }
-    
-    private void OnDisable()
-    {
-        if(objectPool!= null)
-            objectPool.ReturnGameObject(this.gameObject);
+        private ObjectPool _objectPool;
+        // This script is needed to return the enemy to the Pool!
+        private void Start()
+        {
+            _objectPool = FindObjectOfType<ObjectPool>();
+        }
+
+        private void OnDisable()
+        {
+            if(_objectPool != null)
+                _objectPool.ReturnEnemy(this.gameObject);
+        }
+        
+        
     }
 }

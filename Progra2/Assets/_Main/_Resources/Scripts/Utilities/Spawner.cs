@@ -1,32 +1,28 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+namespace _Main._Resources.Scripts.Utilities
 {
-    [SerializeField]
-    private float timeToSpawn = 5f; 
-    private float timeSinceSpawn;
-   private ObjectPool _objectPool;
-   [SerializeField]
-   private GameObject prefab;
+    public class Spawner : MonoBehaviour
+    {
+        [SerializeField] private float timeToSpawn = 5f;
+        private float _timeSinceSpawn;
+        private ObjectPool _objectPool;
 
+        void Start()
+        {
+            _objectPool = FindObjectOfType<ObjectPool>(); //----> gets the Object Pooling reference
+        }
 
-   private void Start()
-   {
-       _objectPool = FindObjectOfType<ObjectPool>();
-   }
-
-
-   private void Update()
-   {
-       timeSinceSpawn += Time.deltaTime;
-       if ( timeSinceSpawn >= timeToSpawn)
-       {
-           GameObject newEnemy = _objectPool.GetObject(prefab); 
-           newEnemy.transform.position = this.transform.position;  
-           timeSinceSpawn = 0f;
-       }
-   }
+        void Update()
+        {
+            //Spawn Timer Settings and prefab to spawn.
+            _timeSinceSpawn += Time.deltaTime;
+            if (_timeSinceSpawn >= timeToSpawn)
+            {
+                GameObject newCritter = _objectPool.GetEnemy();
+                newCritter.transform.position = this.transform.position;
+                _timeSinceSpawn = 0f;
+            }
+        }
+    }
 }

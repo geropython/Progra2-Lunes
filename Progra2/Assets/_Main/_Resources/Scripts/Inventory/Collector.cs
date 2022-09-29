@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Main._Resources.Scripts.Utilities;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -27,7 +28,7 @@ public class Collector : MonoBehaviour
         if (collectable != null)
         {
             collectable.Collect();
-            pickUpSound.Play(); // needs to be in Scriptable object
+           pickUpSound.Play();
             crystals++; 
         }
     }
