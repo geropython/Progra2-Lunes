@@ -308,6 +308,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7db2d112608c1c94fb4c95a40744b6d8, type: 3}
+--- !u!1 &93106414 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3531500095457192785, guid: 6d6591bafcfe46f4984953c3333718ac, type: 3}
+  m_PrefabInstance: {fileID: 1966625117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &178214753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4811834561362125424, guid: a122ac2c5630c7948b8f151b13710945, type: 3}
@@ -1877,6 +1882,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3300944021090148821, guid: 6d6591bafcfe46f4984953c3333718ac, type: 3}
   m_PrefabInstance: {fileID: 1966625117}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &737976547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93106414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8af919ebd8cd4c54d8663f0dbde0f4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  darkCrystalData: {fileID: 11400000, guid: 1268298da510b0e41bd22f79b9ef3d06, type: 2}
+  isCollected: 0
 --- !u!1 &795553599
 GameObject:
   m_ObjectHideFlags: 0
@@ -9901,6 +9920,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36086d6e65288a64caa8057fdb95a90c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOver: GameOver
+  winGame: WinScreen
+  darkCrystal: {fileID: 93106414}
 --- !u!1 &1880226151
 GameObject:
   m_ObjectHideFlags: 0
@@ -10343,7 +10365,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: DarkCrystal
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 635550455, guid: 6d6591bafcfe46f4984953c3333718ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6d6591bafcfe46f4984953c3333718ac, type: 3}
 --- !u!1 &2001465861
 GameObject:

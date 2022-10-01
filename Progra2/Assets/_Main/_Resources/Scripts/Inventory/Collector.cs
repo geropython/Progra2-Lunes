@@ -28,7 +28,7 @@ public class Collector : MonoBehaviour
         if (collectable != null)
         {
             collectable.Collect();
-           pickUpSound.Play();
+            pickUpSound.Play();
             crystals++; 
         }
     }

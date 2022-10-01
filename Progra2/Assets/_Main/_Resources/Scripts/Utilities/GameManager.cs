@@ -1,11 +1,17 @@
+using _Main._Resources.Scripts.Inventory;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-   //Score Variables
-   
+    //Score Variables
+    [SerializeField] private string gameOver;
+    [SerializeField] private string winGame;
+
+
+    private DarkCrystal _darkCrystalScript;
    //Reference to Dark Crystal Prefab?¿
     
     // Enemies or other classes´s health should work apart from this script, this works exclusively for the Player
@@ -14,6 +20,8 @@ public class GameManager : MonoBehaviour
   
     //Referencing the Player´s Health controller
     public HealthController _playerHealth = new HealthController(100, 200);
+
+    public GameObject darkCrystal;
 
 
     //SINGLETON TYPE
@@ -28,16 +36,31 @@ public class GameManager : MonoBehaviour
         {
             gameManager = this;
         }
+
+        _darkCrystalScript = darkCrystal.GetComponent<DarkCrystal>();
+    }
+
+    private void Update()
+    {
+        if (_playerHealth.Health <= 0)
+        {
+            GameOver();
+        }
+
+        if (_darkCrystalScript.isCollected)
+        {
+            WinGame();
+        }
     }
 
     public void WinGame()
     {
-        //Winning Conditions
+        SceneManager.LoadScene(winGame);
     }
 
     public void GameOver()
     {
-        //Game over Conditions  
+        SceneManager.LoadScene(gameOver);
     }
    
 
