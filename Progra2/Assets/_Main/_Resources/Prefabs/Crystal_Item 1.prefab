@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4242968151321856099}
   - component: {fileID: 8914292065599087181}
   - component: {fileID: 8123656339917983426}
-  - component: {fileID: 635550455}
+  - component: {fileID: -1329514916723753250}
   m_Layer: 3
   m_Name: Crystal_Item 1
   m_TagString: Items
@@ -133,7 +133,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.48878682, y: 0.52535534}
   m_EdgeRadius: 0
---- !u!114 &635550455
+--- !u!114 &-1329514916723753250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,7 +142,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3531500095457192785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90346cc49eda7a34cbbbd2c68087b5d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 8af919ebd8cd4c54d8663f0dbde0f4db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cristalData: {fileID: 11400000, guid: 181699705aeb30e48b175ff7faa8374d, type: 2}
+  darkCrystalData: {fileID: 11400000, guid: 1268298da510b0e41bd22f79b9ef3d06, type: 2}
+  isCollected: 0

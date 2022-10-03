@@ -13,7 +13,6 @@ namespace _Main._Resources.Scripts.Player
         [SerializeField] Animator animator;
         [SerializeField] HealthBarScript _healthBar;
    
-   
         // NEW ATTACK TIMERS
         private float _time;
         public float attackRate = 2f;
@@ -22,7 +21,6 @@ namespace _Main._Resources.Scripts.Player
         public Rigidbody2D rb;
         private Vector2 _movement;
         private float moveLimiter = 0.7f;
-        
         
         //Attack Values and Variables
         public Transform attackPosition;
@@ -34,7 +32,6 @@ namespace _Main._Resources.Scripts.Player
    
         //AUDIO
         [SerializeField] private AudioSource hitSound;
-        
    
         //CACHÉ STRINGS
         private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
@@ -45,13 +42,11 @@ namespace _Main._Resources.Scripts.Player
 
         //-----------------METHODS----------------------
 
-        // Start is called before the first frame update
         void Start()
         {
             //Gets the rigidBody and Animator references of the player.
             rb = this.GetComponent<Rigidbody2D>();
             animator = this.GetComponent<Animator>();
-        
         }
     
         //COROUTINE FOR ATTACKING:
@@ -60,7 +55,7 @@ namespace _Main._Resources.Scripts.Player
             int  enemiesToDamage = Physics2D.OverlapCircleNonAlloc(attackPosition.position, attackRange, enemies, enemiesHit ); //CHECK THIS
             for (int i = 0; i < enemiesToDamage; i++)
             {
-                enemies[i].GetComponent<EnemyScript>().TakeDamage(damage);
+                enemies[i].GetComponent<BatScript>().TakeDamage(damage);
             }
             animator.SetTrigger(Attack);  //---> New Animator attack system.
         
@@ -84,9 +79,7 @@ namespace _Main._Resources.Scripts.Player
                     //Starts the Coroutine of Attack:
                     StartCoroutine(PlayerAttack());
                     _nextAttackTime = Time.time + 1f / attackRate;
-              
                 }
-
             }
         
             // Directional Animations
