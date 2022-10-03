@@ -5,9 +5,11 @@ namespace _Main._Resources.Scripts.Utilities
 {
     public class ObjectPool : MonoBehaviour
     {
-
+        //Prefabs to Pool / Queue  of Game objects of type :" enemyPool"
         [SerializeField] private GameObject enemyPrefab;
         private readonly Queue<GameObject> _enemyPool = new Queue<GameObject>();
+       
+        //Amount of prefabs that start within the game "Play Mode" in Pool Size.
         [SerializeField]
         private int poolStartSize = 5;
 
@@ -17,7 +19,7 @@ namespace _Main._Resources.Scripts.Utilities
             {
                 GameObject enemy = Instantiate(enemyPrefab);
                 _enemyPool.Enqueue(enemy);    //Enqueue method
-                enemy.SetActive(false);
+                enemy.SetActive(false);   //Sets the enemy prefab deactivated when "play Mode" Starts.
             }
         }
 
@@ -26,13 +28,13 @@ namespace _Main._Resources.Scripts.Utilities
             if (_enemyPool.Count > 0)
             {
                 GameObject enemy = _enemyPool.Dequeue();
-                enemy.SetActive(true);
+                enemy.SetActive(true);   //Activates the enemy prefab of the Pool Sizewhen the count is > to 0.
                 return enemy;
             }
             else
             {
                 GameObject enemy = Instantiate(enemyPrefab);
-                return enemy;
+                return enemy;           //Returns the enemy prefab
             }
         }
 
