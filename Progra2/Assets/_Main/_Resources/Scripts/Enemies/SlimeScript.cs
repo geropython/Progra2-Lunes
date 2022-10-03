@@ -9,7 +9,6 @@ namespace _Main._Resources.Scripts.Enemies
         private Transform _player;
         [SerializeField] private float lineOfSight;
         [SerializeField] private int health;
-        [SerializeField] private AudioSource enemyDeath;
         [SerializeField] private float shootingRange;
         [SerializeField] private GameObject bullet;
         [SerializeField] private GameObject bulletParent;
@@ -28,7 +27,6 @@ namespace _Main._Resources.Scripts.Enemies
             //ENEMY HEALTH CHECK:
             if (health <= 0)
             {
-                enemyDeath.Play();
                 OnDisable();
             }
 
@@ -49,10 +47,12 @@ namespace _Main._Resources.Scripts.Enemies
         //Gizmos for the enemy Line of sight view
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.green;
+            Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position, lineOfSight);
             Gizmos.DrawWireSphere(transform.position, shootingRange);
         }
+        
+       
 
         public void TakeDamage(int damage)
         {

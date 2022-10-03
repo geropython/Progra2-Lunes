@@ -56,9 +56,10 @@ namespace _Main._Resources.Scripts.Player
             for (int i = 0; i < enemiesToDamage; i++)
             {
                 enemies[i].GetComponent<BatScript>().TakeDamage(damage);
+                //enemies[i].GetComponent<SlimeScript>().TakeDamage(damage);     //preguntar a Nacho ?¿
             }
+           
             animator.SetTrigger(Attack);  //---> New Animator attack system.
-        
             yield return new WaitForSeconds(1);
         }
 

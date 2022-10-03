@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 7444478975830361324}
   - component: {fileID: 1210206015}
   - component: {fileID: -5382132327817728637}
+  - component: {fileID: -6913247005121900516}
   m_Layer: 8
   m_Name: EnemySlime
   m_TagString: Enemy
@@ -60,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 8758438947912099638}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.1743295, y: 2.7121902, z: 0.34881288}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1204100366}
@@ -261,3 +262,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-6913247005121900516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8758438947912099638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3299a422baedcd743bc5143e92f96a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  lineOfSight: 6
+  health: 200
+  shootingRange: 4
+  bullet: {fileID: 6743050094391505600, guid: 343f8328a192ec943b842eae6eb3b048, type: 3}
+  bulletParent: {fileID: 1204100365}
+  fireRate: 0.8
