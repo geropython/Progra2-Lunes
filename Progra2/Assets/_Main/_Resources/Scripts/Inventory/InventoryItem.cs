@@ -6,6 +6,7 @@ namespace _Main._Resources.Scripts.Inventory
     [Serializable]
     public class InventoryItem : MonoBehaviour
     {
+        //utilizar Stack Custom para que el ultimo que entra sea el primero en salir
         public ItemData itemData;
         public int stackSize;
 

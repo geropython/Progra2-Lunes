@@ -26,7 +26,7 @@ namespace _Main._Resources.Scripts.Player
         public Transform attackPosition;
    
         [SerializeField] private float attackRange;
-        [SerializeField] private Collider2D[] enemies;
+         private Collider2D[] enemies;
         [SerializeField] private LayerMask enemiesHit;
         [SerializeField] private int damage;
    
@@ -44,6 +44,7 @@ namespace _Main._Resources.Scripts.Player
 
         void Start()
         {
+            enemies = new Collider2D[5];
             //Gets the rigidBody and Animator references of the player.
             rb = this.GetComponent<Rigidbody2D>();
             animator = this.GetComponent<Animator>();
@@ -55,8 +56,8 @@ namespace _Main._Resources.Scripts.Player
             int  enemiesToDamage = Physics2D.OverlapCircleNonAlloc(attackPosition.position, attackRange, enemies, enemiesHit ); //CHECK THIS
             for (int i = 0; i < enemiesToDamage; i++)
             {
-                enemies[i].GetComponent<BatScript>().TakeDamage(damage);
-                //enemies[i].GetComponent<SlimeScript>().TakeDamage(damage);     //preguntar a Nacho ?¿
+                enemies[i].GetComponent<BatScript>().TakeDamage(damage);  // Use interface
+                
             }
            
             animator.SetTrigger(Attack);  //---> New Animator attack system.

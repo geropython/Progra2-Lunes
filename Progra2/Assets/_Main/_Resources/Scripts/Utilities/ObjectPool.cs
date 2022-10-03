@@ -5,6 +5,7 @@ namespace _Main._Resources.Scripts.Utilities
 {
     public class ObjectPool : MonoBehaviour
     {
+        //utilizar Queue más óptimo, primeor en entrar, primero en salir. Utilizar interfaces IPooleable y si se puede hacerlo más dinámico para que se puedan poolear mas tipos de enemigos.
         //Prefabs to Pool / Queue  of Game objects of type :" enemyPool"
         [SerializeField] private GameObject enemyPrefab;
         private readonly Queue<GameObject> _enemyPool = new Queue<GameObject>();

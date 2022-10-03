@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _Main._Resources.Scripts.Enemies
 {
-    public class EnemyReturn : MonoBehaviour
+    public class EnemyReturn : MonoBehaviour 
     {
         private ObjectPool _objectPool;
         // This script is needed to return the enemy to the Pool!
