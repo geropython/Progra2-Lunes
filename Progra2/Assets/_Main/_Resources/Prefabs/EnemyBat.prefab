@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
-  lineOfSight: 3
+  lineOfSight: 5.65
   health: 100
   enemyDeath: {fileID: -7621592452447047518}
 --- !u!114 &6978564566966229162
