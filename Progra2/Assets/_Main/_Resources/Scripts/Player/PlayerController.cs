@@ -69,7 +69,9 @@ namespace _Main._Resources.Scripts.Player
             //Movement controller
             _movement.x = Input.GetAxisRaw("Horizontal");     
             _movement.y = Input.GetAxisRaw("Vertical");
-
+            
+            //Acá iria lode la rotación Quaternion?
+            
             //-------------ATTACK FUNCTION---------------------------------
         
             //Attack Input and triggers Animation:
@@ -88,7 +90,9 @@ namespace _Main._Resources.Scripts.Player
             animator.SetFloat(Horizontal, _movement.x);      
             animator.SetFloat(Vertical, _movement.y);
             animator.SetFloat(Speed, _movement.sqrMagnitude);
-       
+            
+            //Acá iria lode la rotación Quaternion?
+            
             //-------------HEALTH AND DAMAGE FUNCTIONS--------------------
             //INPUT TESTING DAMAGE AND HEALTH SYSTEM
             if (Input.GetKeyDown(KeyCode.Q))
