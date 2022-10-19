@@ -39,6 +39,8 @@ namespace _Main._Resources.Scripts.Player
         private static readonly int Vertical = Animator.StringToHash("Vertical");
         private static readonly int Speed = Animator.StringToHash("Speed");
         private static readonly int Attack = Animator.StringToHash("Attack");
+        private static readonly int LastVertical = Animator.StringToHash("LastVertical");
+        private static readonly int LastHorizontal = Animator.StringToHash("LastHorizontal");
 
         //-----------------METHODS----------------------
 
@@ -70,8 +72,6 @@ namespace _Main._Resources.Scripts.Player
             _movement.x = Input.GetAxisRaw("Horizontal");     
             _movement.y = Input.GetAxisRaw("Vertical");
             
-            //Acá iria lode la rotación Quaternion?
-            
             //-------------ATTACK FUNCTION---------------------------------
         
             //Attack Input and triggers Animation:
@@ -91,7 +91,14 @@ namespace _Main._Resources.Scripts.Player
             animator.SetFloat(Vertical, _movement.y);
             animator.SetFloat(Speed, _movement.sqrMagnitude);
             
-            //Acá iria lode la rotación Quaternion?
+            //PLayer´s Rotation towards each input ( horizontal/ Vertical)
+            if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 ||
+                Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
+            {
+                animator.SetFloat(LastHorizontal, Input.GetAxisRaw("Horizontal"));
+                animator.SetFloat(LastVertical, Input.GetAxisRaw("Vertical"));
+            }
+            
             
             //-------------HEALTH AND DAMAGE FUNCTIONS--------------------
             //INPUT TESTING DAMAGE AND HEALTH SYSTEM
