@@ -33,7 +33,7 @@ namespace _Main._Resources.Scripts.Player
         //AUDIO
         [SerializeField] private AudioSource hitSound;
    
-        //CACHÉ STRINGS
+        //CACHE STRINGS
         private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
         private static readonly int Horizontal = Animator.StringToHash("Horizontal");
         private static readonly int Vertical = Animator.StringToHash("Vertical");
@@ -55,11 +55,10 @@ namespace _Main._Resources.Scripts.Player
         //COROUTINE FOR ATTACKING:
         IEnumerator PlayerAttack()
         {
-            int  enemiesToDamage = Physics2D.OverlapCircleNonAlloc(attackPosition.position, attackRange, enemies, enemiesHit ); //CHECK THIS
+            int  enemiesToDamage = Physics2D.OverlapCircleNonAlloc(attackPosition.position, attackRange, enemies, enemiesHit ); 
             for (int i = 0; i < enemiesToDamage; i++)
             {
-                enemies[i].GetComponent<BatScript>().TakeDamage(damage);  // Use interface
-                
+                enemies[i].GetComponent<BatScript>().TakeDamage(damage);  // Use interface ---> Check with iDamageable Interface to check for the enemies damage
             }
            
             animator.SetTrigger(Attack);  //---> New Animator attack system.
@@ -97,8 +96,10 @@ namespace _Main._Resources.Scripts.Player
             {
                 animator.SetFloat(LastHorizontal, Input.GetAxisRaw("Horizontal"));
                 animator.SetFloat(LastVertical, Input.GetAxisRaw("Vertical"));
+               
+                
             }
-            
+
             
             //-------------HEALTH AND DAMAGE FUNCTIONS--------------------
             //INPUT TESTING DAMAGE AND HEALTH SYSTEM
