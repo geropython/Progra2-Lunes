@@ -3,6 +3,7 @@ using System.Collections;
 using _Main._Resources.Scripts.Enemies;
 using _Main._Resources.Scripts.Utilities;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace _Main._Resources.Scripts.Player
 {
@@ -16,7 +17,7 @@ namespace _Main._Resources.Scripts.Player
         // NEW ATTACK TIMERS
         private float _time;
         public float attackRate = 2f;
-        private float _nextAttackTime = 0f;
+        private float _nextAttackTime;
    
         public Rigidbody2D rb;
         private Vector2 _movement;
@@ -26,7 +27,7 @@ namespace _Main._Resources.Scripts.Player
         public Transform attackPosition;
         [SerializeField] private float attackRange;
         
-         private Collider2D[] enemies;
+         private Collider2D[] _enemies;
         [SerializeField] private LayerMask enemiesHit;
         [SerializeField] private int damage;
         
@@ -47,24 +48,25 @@ namespace _Main._Resources.Scripts.Player
 
         void Start()
         {
-            enemies = new Collider2D[5];
+            _enemies = new Collider2D[5];
             //Gets the rigidBody and Animator references of the player.
             rb = this.GetComponent<Rigidbody2D>();
             animator = this.GetComponent<Animator>();
         }
     
         //COROUTINE FOR ATTACKING:
+        // ReSharper disable Unity.PerformanceAnalysis
         IEnumerator PlayerAttack()
         {
-            int  enemiesToDamage = Physics2D.OverlapCircleNonAlloc(attackPosition.position, attackRange, enemies, enemiesHit ); 
-            for (int i = 1; i < enemiesToDamage; i++)
+            animator.SetTrigger(Attack);
+            //---> New Animator attack system.
+          
+            int  enemiesToDamage = Physics2D.OverlapCircleNonAlloc(attackPosition.position, attackRange, _enemies, enemiesHit ); 
+            for (int i =0; i < enemiesToDamage; i++)
             {
-                enemies[i].GetComponent<BatScript>().TakeDamage(damage);
-                enemies[i].GetComponent<SlimeScript>().TakeDamage(damage);
+                _enemies[i].GetComponent<BatScript>().TakeDamage(damage);
                 
             }
-           
-            animator.SetTrigger(Attack);  //---> New Animator attack system.
             yield return new WaitForSeconds(1);   // Use interface ---> Check with iDamageable Interface to check for the enemies damage
         }
 
@@ -82,9 +84,10 @@ namespace _Main._Resources.Scripts.Player
             {
                 if (Time.time >= _nextAttackTime)
                 {
+                    _nextAttackTime = Time.time + 1f / attackRate;
                     //Starts the Coroutine of Attack:
                     StartCoroutine(PlayerAttack());
-                   _nextAttackTime = Time.time + 1f / attackRate;
+                  
                 }
             }
         
@@ -103,7 +106,6 @@ namespace _Main._Resources.Scripts.Player
                 
             }
 
-            
             //-------------HEALTH AND DAMAGE FUNCTIONS--------------------
             //INPUT TESTING DAMAGE AND HEALTH SYSTEM
             if (Input.GetKeyDown(KeyCode.Q))
@@ -126,7 +128,7 @@ namespace _Main._Resources.Scripts.Player
                 _movement.x *= moveLimiter;
                 _movement.y *= moveLimiter;
             }
-            rb.MovePosition(rb.position + _movement * moveSpeed * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + _movement * (moveSpeed * Time.fixedDeltaTime));
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
