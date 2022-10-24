@@ -6,18 +6,28 @@ namespace _Main._Resources.Scripts.Enemies
     public class SlimeScript : MonoBehaviour
     {
         [SerializeField] private float speed;
+       
+        [SerializeField] private int maxHealth = 150;
+        private int _currentHealth;
+
         private Transform _player;
+        
         [SerializeField] private float lineOfSight;
-        [SerializeField] private int health;
-        [SerializeField] private float shootingRange;
+       // [SerializeField] private int health;
+       
+       
+       [SerializeField] private float shootingRange;
         [SerializeField] private GameObject bullet;
         [SerializeField] private GameObject bulletParent;
+        
+        
         [SerializeField] private float fireRate;
         private float _nextFireTime;
 
         //METHODS--------------------------------
         void Start()
         {
+            _currentHealth = maxHealth;
             //Gets the reference to the player with a Tag.
             _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         }
@@ -25,7 +35,7 @@ namespace _Main._Resources.Scripts.Enemies
         void Update()
         {
             //ENEMY HEALTH CHECK:
-            if (health <= 0)
+            if (_currentHealth <= 0)
             {
                 OnDisable();
             }
@@ -51,14 +61,25 @@ namespace _Main._Resources.Scripts.Enemies
             Gizmos.DrawWireSphere(transform.position, lineOfSight);
             Gizmos.DrawWireSphere(transform.position, shootingRange);
         }
-        
-       
 
         public void TakeDamage(int damage)
         {
-            health -= damage;
-            Debug.Log("Enemy DAMAGED!");
+            _currentHealth -= damage;
+            
+            Debug.Log("Slime Damaged!");
+
+            if (_currentHealth <= 0)
+            {
+                Debug.Log("SLIME DEFEATED");
+                OnDisable();
+            }
         }
+
+        // public void TakeDamage(int damage)    // no se está llamando la funcion!
+        // {
+        //     health -= damage;
+        //     Debug.Log("Enemy DAMAGED!");
+        // }
 
         private void OnDisable()
         {

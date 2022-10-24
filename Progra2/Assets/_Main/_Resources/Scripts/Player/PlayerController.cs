@@ -24,11 +24,12 @@ namespace _Main._Resources.Scripts.Player
         
         //Attack Values and Variables
         public Transform attackPosition;
-   
         [SerializeField] private float attackRange;
+        
          private Collider2D[] enemies;
         [SerializeField] private LayerMask enemiesHit;
         [SerializeField] private int damage;
+        
    
         //AUDIO
         [SerializeField] private AudioSource hitSound;
@@ -56,13 +57,15 @@ namespace _Main._Resources.Scripts.Player
         IEnumerator PlayerAttack()
         {
             int  enemiesToDamage = Physics2D.OverlapCircleNonAlloc(attackPosition.position, attackRange, enemies, enemiesHit ); 
-            for (int i = 0; i < enemiesToDamage; i++)
+            for (int i = 1; i < enemiesToDamage; i++)
             {
-                enemies[i].GetComponent<BatScript>().TakeDamage(damage);  // Use interface ---> Check with iDamageable Interface to check for the enemies damage
+                enemies[i].GetComponent<BatScript>().TakeDamage(damage);
+                enemies[i].GetComponent<SlimeScript>().TakeDamage(damage);
+                
             }
            
             animator.SetTrigger(Attack);  //---> New Animator attack system.
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1);   // Use interface ---> Check with iDamageable Interface to check for the enemies damage
         }
 
         void Update()
@@ -81,7 +84,7 @@ namespace _Main._Resources.Scripts.Player
                 {
                     //Starts the Coroutine of Attack:
                     StartCoroutine(PlayerAttack());
-                    _nextAttackTime = Time.time + 1f / attackRate;
+                   _nextAttackTime = Time.time + 1f / attackRate;
                 }
             }
         
