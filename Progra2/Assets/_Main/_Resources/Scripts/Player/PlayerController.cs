@@ -1,9 +1,8 @@
-using System;
+
 using System.Collections;
 using _Main._Resources.Scripts.Enemies;
 using _Main._Resources.Scripts.Utilities;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace _Main._Resources.Scripts.Player
 {
@@ -27,6 +26,7 @@ namespace _Main._Resources.Scripts.Player
         public Transform attackPosition;
         [SerializeField] private float attackRange;
         
+        //Enemy Layer´s / Collider references
          private Collider2D[] _enemies;
         [SerializeField] private LayerMask enemiesHit;
         [SerializeField] private int damage;
@@ -35,7 +35,7 @@ namespace _Main._Resources.Scripts.Player
         //AUDIO
         [SerializeField] private AudioSource hitSound;
    
-        //CACHE STRINGS
+        //CACHE STRINGS (Animations)
         private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
         private static readonly int Horizontal = Animator.StringToHash("Horizontal");
         private static readonly int Vertical = Animator.StringToHash("Vertical");
