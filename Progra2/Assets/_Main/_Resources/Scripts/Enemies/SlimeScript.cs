@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Main._Resources.Scripts.Utilities;
 using UnityEngine;
 namespace _Main._Resources.Scripts.Enemies
 {
-    public class SlimeScript : MonoBehaviour
+    public class SlimeScript : MonoBehaviour, IDamageable
     {
+        
         [SerializeField] private float speed;
-       
+        
+        //Interface iDamageable:
+        public int Health { get; set; }
         [SerializeField] private int maxHealth = 150;
         private int _currentHealth;
 
@@ -84,6 +88,20 @@ namespace _Main._Resources.Scripts.Enemies
         private void OnDisable()
         {
             gameObject.SetActive(false);
+        }
+
+        
+        public void Damage( int damage)
+        {
+            _currentHealth -= damage;
+            
+            Debug.Log("Slime Damaged!");
+            
+            if (_currentHealth <= 0)
+            {
+                Debug.Log("SLIME DEFEATED");
+                OnDisable();
+            }
         }
     }
 }

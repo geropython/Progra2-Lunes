@@ -2,6 +2,7 @@
 using System.Collections;
 using _Main._Resources.Scripts.Enemies;
 using _Main._Resources.Scripts.Utilities;
+using Cinemachine;
 using UnityEngine;
 
 namespace _Main._Resources.Scripts.Player
@@ -30,6 +31,8 @@ namespace _Main._Resources.Scripts.Player
          private Collider2D[] _enemies;
         [SerializeField] private LayerMask enemiesHit;
         [SerializeField] private int damage;
+        
+        //Interface:
         
    
         //AUDIO
@@ -60,14 +63,22 @@ namespace _Main._Resources.Scripts.Player
         {
             animator.SetTrigger(Attack);
             //---> New Animator attack system.
-          
+          // Inicializar interfaz IDamageable ya seteada en Bat y en Slime Enemies.
             int  enemiesToDamage = Physics2D.OverlapCircleNonAlloc(attackPosition.position, attackRange, _enemies, enemiesHit ); 
             for (int i =0; i < enemiesToDamage; i++)
             {
-                _enemies[i].GetComponent<BatScript>().TakeDamage(damage);
+                var currentEnemies= _enemies[i].GetComponent<BatScript>();
+                
+
+                if (currentEnemies != null)
+                {
+                    _enemies[i].GetComponent<BatScript>().TakeDamage(damage);
+                    
+                     // PAra que NO TIRE NULL REFERENCE; Enemy Slime no puede ser dañado.
+                }
                 
             }
-            yield return new WaitForSeconds(1);   // Use interface ---> Check with iDamageable Interface to check for the enemies damage
+            yield return new WaitForSeconds(1);  //Creación de Interfaz IDamageable  --->  Para Bat Script y Enemy Slime. ////OTRA ALTERNATIVA: Clase Base enemy.
         }
 
         void Update()

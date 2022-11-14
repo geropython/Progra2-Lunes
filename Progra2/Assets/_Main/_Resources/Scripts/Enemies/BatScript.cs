@@ -4,13 +4,22 @@ using UnityEngine;
 
 namespace _Main._Resources.Scripts.Enemies
 {
-    public class BatScript : MonoBehaviour
+    public class BatScript : MonoBehaviour, IDamageable
     {
         [SerializeField] private float speed;
         private Transform _player;
         [SerializeField] private float lineOfSight;
         [SerializeField] private int health;
         [SerializeField] private AudioSource enemyDeath;
+        
+        //IDamageable
+        public int Health { get; set; }
+        public void Damage(int damage)
+        {
+            // health damage
+            // health -= damage;
+            // Debug.Log("Enemy DAMAGED!");
+        }
 
         //METHODS--------------------------------
         void Start()
@@ -54,5 +63,7 @@ namespace _Main._Resources.Scripts.Enemies
         {
             gameObject.SetActive(false);
         }
+
+       
     }
 }

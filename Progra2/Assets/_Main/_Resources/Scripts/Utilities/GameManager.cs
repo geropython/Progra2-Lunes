@@ -19,6 +19,9 @@ namespace _Main._Resources.Scripts.Utilities
   
         //Referencing the Player´s Health controller
         public HealthController _playerHealth = new HealthController(100, 200);
+        
+        //Referencing Enemies HEALTH CONTROLLER :
+        // TO DO.
 
         //SINGLETON TYPE
         void Awake()
