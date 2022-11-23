@@ -1,3 +1,5 @@
+using System;
+using _Main._Resources.Scripts.Utilities;
 using UnityEngine;
 
 namespace _Main._Resources.Scripts.Inventory
@@ -8,12 +10,15 @@ namespace _Main._Resources.Scripts.Inventory
         public delegate void HandleCristalCollected(ItemData itemData);
         public ItemData cristalData;
 
+       
 
         public void Collect()
         {
             Destroy(gameObject);
             AudioClip.Instantiate(cristalData);
             OnCristalCollected?.Invoke(cristalData);
+           
+            
         }
     }
 }

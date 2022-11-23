@@ -2829,6 +2829,7 @@ MonoBehaviour:
   gameOver: GameOver
   winGame: WinScreen
   darkCrystal: {fileID: 1287374493}
+  highScoretext: {fileID: 0}
 --- !u!1 &164059645
 GameObject:
   m_ObjectHideFlags: 0

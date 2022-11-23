@@ -1,6 +1,9 @@
+using System;
 using _Main._Resources.Scripts.Inventory;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
 
 namespace _Main._Resources.Scripts.Utilities
 {
@@ -12,7 +15,12 @@ namespace _Main._Resources.Scripts.Utilities
         [SerializeField] private GameObject darkCrystal;
 
         private DarkCrystal _darkCrystalScript;
+       
+        
+        //For highScore
+       // private int _crystalCount;
 
+        [SerializeField] TextMeshProUGUI highScoretext;
         // Enemies or other classes´s health should work apart from this script, this works exclusively for the Player
 
         public static GameManager gameManager { get; private set; }
@@ -39,6 +47,11 @@ namespace _Main._Resources.Scripts.Utilities
             _darkCrystalScript = darkCrystal.GetComponent<DarkCrystal>();
         }
 
+        private void Start()
+        {
+           // UpdateHighScoreText();
+        }
+
         private void Update()
         {
             if (_playerHealth.Health <= 0)       
@@ -61,5 +74,22 @@ namespace _Main._Resources.Scripts.Utilities
         {
             SceneManager.LoadScene(gameOver);           //Player lose when HP reaches 0.
         }
+
+     // public  void CheckHighScore()
+     //    {
+     //        if (_crystalCount > PlayerPrefs.GetInt("HighScore", 0))
+     //        {
+     //            PlayerPrefs.SetInt("HighScore", _crystalCount);
+     //        }
+     //        
+     //    }
+
+
+     // private void UpdateHighScoreText()
+     // {
+     //     highScoretext.text = $"HighScore:{PlayerPrefs.GetInt("HighScore", 0)}";
+     // }
     }
+       
+    
 }
