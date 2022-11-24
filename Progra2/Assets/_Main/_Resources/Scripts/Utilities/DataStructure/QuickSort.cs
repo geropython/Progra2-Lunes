@@ -16,9 +16,9 @@ namespace _Main._Resources.Scripts.Utilities.DataStructure
         private void Start()
         {
             
-            SelectionSort(scores);
+            SelectionSort(scores);      //Applies the Sorting method.
             
-            Debug.Log("Sorted High Score is:" +string.Join("," ,scores));
+            Debug.Log("Sorted High Score is:" +string.Join("," ,scores));            // Debugs a message for the Sorting Scores in ascending order.
         }
 
         private void SelectionSort(int[] nums)       //Method for Re- organizing the numbers ( score in this case)
