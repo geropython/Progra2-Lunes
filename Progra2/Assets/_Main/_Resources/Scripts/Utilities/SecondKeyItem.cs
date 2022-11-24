@@ -14,6 +14,7 @@ namespace _Main._Resources.Scripts.Utilities
                 SceneManager.LoadScene("WinScreen");
                 Debug.Log("Collected");
                 Destroy(this.gameObject);
+                Cursor.lockState = CursorLockMode.None;
             }
         }
     

@@ -16,11 +16,6 @@ namespace _Main._Resources.Scripts.Utilities
 
         private DarkCrystal _darkCrystalScript;
        
-        
-        //For highScore
-       // private int _crystalCount;
-
-        [SerializeField] TextMeshProUGUI highScoretext;
         // Enemies or other classes´s health should work apart from this script, this works exclusively for the Player
 
         public static GameManager gameManager { get; private set; }

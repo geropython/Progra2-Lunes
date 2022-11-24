@@ -1,32 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour
+namespace _Main._Resources.Scripts.Menu
 {
-    public void StartGame()
+    public class LevelManager : MonoBehaviour
     {
-        SceneManager.LoadScene(1);
-    }
+        public void StartGame()
+        {
+            SceneManager.LoadScene(1);
+            Cursor.lockState = CursorLockMode.Locked;
+        }
 
-    //void Level2()
-    //{
-    //    SceneManager.LoadScene(2);
-    //}
+        //void Level2()
+        //{
+        //    SceneManager.LoadScene(2);
+        //}
 
-    //void Level3()
-    //{
-    //    SceneManager.LoadScene(3);
-    //}
+        //void Level3()
+        //{
+        //    SceneManager.LoadScene(3);
+        //}
 
-    public void MainMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
-    public void QuitGame()
-    {
-        Debug.Log("Quit game");
-        Application.Quit();
+        public void MainMenu()
+        {
+            SceneManager.LoadScene(0);
+        }
+        public void QuitGame()
+        {
+            Debug.Log("Quit game");
+            Application.Quit();
+        }
     }
 }

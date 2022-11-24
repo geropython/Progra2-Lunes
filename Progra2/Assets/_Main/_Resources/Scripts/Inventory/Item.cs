@@ -14,6 +14,7 @@ namespace _Main._Resources.Scripts.Inventory
                 SceneManager.LoadScene("Level 2");
                 Debug.Log("Collected");
                 Destroy(this.gameObject);
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
     }
