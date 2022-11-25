@@ -1,11 +1,14 @@
 namespace _Main._Resources.Scripts.Utilities
 {
-    public interface IDamageable 
+    public interface IDamageable
     {
-    // Stuff.
-    
-    int Health { get; set; }
-    void Damage(int damage);
+
+
+        public int Health { get; set; }
+        public void TakeDamage(int damage);
+
+        public void Die();
+
 
     }
 }

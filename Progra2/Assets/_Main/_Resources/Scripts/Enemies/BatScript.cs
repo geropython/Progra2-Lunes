@@ -34,7 +34,7 @@ namespace _Main._Resources.Scripts.Enemies
             if (health <= 0)
             {
                 enemyDeath.Play();
-                OnDisable();
+                Die();
             }
 
             //Checks if the Player is in range, and then chase it.
@@ -57,6 +57,11 @@ namespace _Main._Resources.Scripts.Enemies
         {
             health -= damage;
             Debug.Log("Enemy DAMAGED!");
+        }
+
+        public void Die()
+        {
+            OnDisable();
         }
 
         private void OnDisable()

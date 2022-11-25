@@ -68,13 +68,15 @@ namespace _Main._Resources.Scripts.Player
             for (int i =0; i < enemiesToDamage; i++)
             {
                 var currentEnemies= _enemies[i].GetComponent<BatScript>();
-                
+                var bossEnemies= _enemies[i].GetComponent<SlimeScript>();
 
-                if (currentEnemies != null)
+                if (currentEnemies != null )
                 {
                     _enemies[i].GetComponent<BatScript>().TakeDamage(damage);
-                    
-                     // PAra que NO TIRE NULL REFERENCE; Enemy Slime no puede ser dañado.
+                }
+                if (bossEnemies != null)              //FIX FOR THE SLIME DAMAGE!!
+                {
+                    bossEnemies.GetComponent<SlimeScript>().TakeDamage(damage);
                 }
                 
             }

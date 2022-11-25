@@ -38,11 +38,7 @@ namespace _Main._Resources.Scripts.Enemies
 
         void Update()
         {
-            //ENEMY HEALTH CHECK:
-            if (_currentHealth <= 0)
-            {
-                OnDisable();
-            }
+          
 
             //Checks if the Player is in range, and then chase it.
             float distanceFromPlayer = Vector2.Distance(_player.position, transform.position);
@@ -66,32 +62,18 @@ namespace _Main._Resources.Scripts.Enemies
             Gizmos.DrawWireSphere(transform.position, shootingRange);
         }
 
-        public void TakeDamage(int damage)
+      
+        public void Die()
         {
-            _currentHealth -= damage;
-            
-            Debug.Log("Slime Damaged!");
-
-            if (_currentHealth <= 0)
-            {
-                Debug.Log("SLIME DEFEATED");
-                OnDisable();
-            }
+           OnDisable();
         }
-
-        // public void TakeDamage(int damage)    // no se está llamando la funcion!
-        // {
-        //     health -= damage;
-        //     Debug.Log("Enemy DAMAGED!");
-        // }
-
+        
         private void OnDisable()
         {
             gameObject.SetActive(false);
         }
-
         
-        public void Damage( int damage)
+        public void TakeDamage( int damage)
         {
             _currentHealth -= damage;
             
@@ -100,7 +82,7 @@ namespace _Main._Resources.Scripts.Enemies
             if (_currentHealth <= 0)
             {
                 Debug.Log("SLIME DEFEATED");
-                OnDisable();
+                Die();
             }
         }
     }

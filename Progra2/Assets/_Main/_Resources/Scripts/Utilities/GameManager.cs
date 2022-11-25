@@ -42,11 +42,6 @@ namespace _Main._Resources.Scripts.Utilities
             _darkCrystalScript = darkCrystal.GetComponent<DarkCrystal>();
         }
 
-        private void Start()
-        {
-           // UpdateHighScoreText();
-        }
-
         private void Update()
         {
             if (_playerHealth.Health <= 0)       
@@ -67,23 +62,14 @@ namespace _Main._Resources.Scripts.Utilities
 
         public void GameOver()
         {
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene(gameOver);           //Player lose when HP reaches 0.
         }
 
-     // public  void CheckHighScore()
-     //    {
-     //        if (_crystalCount > PlayerPrefs.GetInt("HighScore", 0))
-     //        {
-     //            PlayerPrefs.SetInt("HighScore", _crystalCount);
-     //        }
-     //        
-     //    }
+     
 
 
-     // private void UpdateHighScoreText()
-     // {
-     //     highScoretext.text = $"HighScore:{PlayerPrefs.GetInt("HighScore", 0)}";
-     // }
+    
     }
        
     
