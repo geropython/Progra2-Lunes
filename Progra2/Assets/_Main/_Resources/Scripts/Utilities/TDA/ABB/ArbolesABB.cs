@@ -1,136 +1,169 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using System.Diagnostics;
 using UnityEngine;
 
-public class ArbolesABB : MonoBehaviour
+namespace _Main._Resources.Scripts.Utilities.TDA.ABB
 {
-   // //REEMPLAZAR EL PUBLIC INT INFO POR ALGUN GAMEOBJECT DE COLLECTABLES.
-   //  public interface ABBTDA
-   //  {
-   //      GameObject Raiz();
-   //      ABBTDA HijoIzq();
-   //      ABBTDA HijoDer();
-   //      bool ArbolVacio();
-   //      void InicializarArbol();
-   //      void AgregarElem(GameObject x);
-   //      void EliminarElem(GameObject x);                           
-   //  }
-   //
-   //  public class NodoABB
-   //  {
-   //      // datos a almacenar, en este caso un entero
-   //      
-   //
-   //      public ItemData data;
-   //      // referencia los nodos izquiero y derecho
-   //      public ABBTDA hijoIzq;
-   //      public ABBTDA hijoDer;
-   //  }
-   //
-   //  public class ABB : ABBTDA
-   //  {
-   //      NodoABB raiz;
-   //
-   //      public GameObject Raiz()
-   //      {
-   //          return raiz.crystal;
-   //      }
-   //
-   //      public bool ArbolVacio()
-   //      {
-   //          return (raiz == null);
-   //      }
-   //
-   //      public void InicializarArbol()
-   //      {
-   //          raiz = null;
-   //      }
-   //
-   //      public ABBTDA HijoDer()
-   //      {
-   //          return raiz.hijoDer;
-   //      }
-   //
-   //      public ABBTDA HijoIzq()
-   //      {
-   //          return raiz.hijoIzq;
-   //      }
-   //
-   //      public void AgregarElem(GameObject x)
-   //      {
-   //          if(raiz == null)
-   //          {
-   //              raiz = new NodoABB();
-   //              raiz.crystal = x;
-   //              raiz.hijoIzq = new ABB();
-   //              raiz.hijoIzq.InicializarArbol();
-   //              raiz.hijoDer = new ABB();
-   //              raiz.hijoDer.InicializarArbol();
-   //          }
-   //          else if (raiz.crystal > x)
-   //          {
-   //              raiz.hijoIzq.AgregarElem(x);
-   //          }
-   //          else if (raiz.crystal < x)
-   //          {
-   //              raiz.hijoDer.AgregarElem(x);
-   //          }
-   //      }
-   //
-   //      public void EliminarElem(GameObject x)
-   //      {
-   //          if (raiz != null)
-   //          {
-   //              if (raiz.crystal == x && raiz.hijoIzq.ArbolVacio() && raiz.hijoDer.ArbolVacio())
-   //              {
-   //                  raiz = null;
-   //              }
-   //              else if (raiz.crystal == x && !raiz.hijoIzq.ArbolVacio())
-   //              {
-   //                  raiz.crystal= this.mayor(raiz.hijoIzq);
-   //                  raiz.hijoIzq.EliminarElem(raiz.crystal);
-   //              }
-   //              else if (raiz.crystal == x && raiz.hijoIzq.ArbolVacio())
-   //              {
-   //                  raiz.crystal = this.menor(raiz.hijoDer);
-   //                  raiz.hijoDer.EliminarElem(raiz.crystal);
-   //              }
-   //              else if(raiz.crystal < x)
-   //              {
-   //                  raiz.hijoDer.EliminarElem(x);
-   //              }
-   //              else
-   //              {
-   //                  raiz.hijoIzq.EliminarElem(x);
-   //              }
-   //          }
-   //      }
-   //
-   //      public GameObject mayor(ABBTDA a)
-   //      {
-   //          if (a.HijoDer().ArbolVacio())
-   //          {
-   //              return a.Raiz();
-   //          }
-   //          else
-   //          {
-   //              return mayor(a.HijoDer());
-   //          }
-   //      }
-   //
-   //      public GameObject menor(ABBTDA a)
-   //      {
-   //          if (a.HijoIzq(). ArbolVacio())
-   //          {
-   //              return a.Raiz();
-   //          }
-   //          else
-   //          {
-   //              return menor(a.HijoIzq());
-   //          }
-   //      }
-   //  }
+   public class ArbolesABB : MonoBehaviour
+   {
+       
+       static void Main(string[] args)
+       {
+           // Arboles Binarios de Búsqueda
+           Console.WriteLine("Programa Iniciado\n");
+
+           // creo un TDA ABB
+           ABB arbol = new ABB();
+
+           int[] vectorEnteros = { 67, 12, 95, 56, 85, 1, 100, 23, 60, 9 };
+
+           Stopwatch stw = new Stopwatch();
+
+           // agrego los mismos elementos del vector al arbol
+           for (int i = 0; i < vectorEnteros.Length; i++)
+           {
+               arbol.AgregarElem(vectorEnteros[i]);
+           }
+
+           stw.Start();
+           Console.WriteLine("\nEl mayor es: " + arbol.mayor(arbol).ToString());
+           stw.Stop();
+           Console.WriteLine("Time elapsed: {0}", stw.Elapsed.ToString("hh\\:mm\\:ss\\.ffff"));
+           Console.WriteLine("Ticks elapsed: {0}", stw.ElapsedTicks.ToString());
+
+           stw.Restart();
+           Console.WriteLine("\nEl menor es: " + arbol.menor(arbol).ToString());
+           stw.Stop();
+           Console.WriteLine("Time elapsed: {0}", stw.Elapsed.ToString("hh\\:mm\\:ss\\.ffff"));
+           Console.WriteLine("Ticks elapsed: {0}", stw.ElapsedTicks.ToString());
+
+           Console.ReadKey();
+       }
+       
+      public interface ABBTDA
+    {
+        int Raiz();
+        ABBTDA HijoIzq();
+        ABBTDA HijoDer();
+        bool ArbolVacio();
+        void InicializarArbol();
+        void AgregarElem(int x);
+        void EliminarElem(int x);
+    }
+
+    public class NodoABB
+    {
+        // datos a almacenar, en este caso un entero
+        public int info;
+        // referencia los nodos izquiero y derecho
+        public ABBTDA hijoIzq;
+        public ABBTDA hijoDer;
+    }
+
+    public class ABB : ABBTDA
+    {
+        NodoABB raiz;
+
+        public int Raiz()
+        {
+            return raiz.info;
+        }
+
+        public bool ArbolVacio()
+        {
+            return (raiz == null);
+        }
+
+        public void InicializarArbol()
+        {
+            raiz = null;
+        }
+
+        public ABBTDA HijoDer()
+        {
+            return raiz.hijoDer;
+        }
+
+        public ABBTDA HijoIzq()
+        {
+            return raiz.hijoIzq;
+        }
+
+        public void AgregarElem(int x)
+        {
+            if(raiz == null)
+            {
+                raiz = new NodoABB();
+                raiz.info = x;
+                raiz.hijoIzq = new ABB();
+                raiz.hijoIzq.InicializarArbol();
+                raiz.hijoDer = new ABB();
+                raiz.hijoDer.InicializarArbol();
+            }
+            else if (raiz.info > x)
+            {
+                raiz.hijoIzq.AgregarElem(x);
+            }
+            else if (raiz.info < x)
+            {
+                raiz.hijoDer.AgregarElem(x);
+            }
+        }
+
+        public void EliminarElem(int x)
+        {
+            if (raiz != null)
+            {
+                if (raiz.info == x && raiz.hijoIzq.ArbolVacio() && raiz.hijoDer.ArbolVacio())
+                {
+                    raiz = null;
+                }
+                else if (raiz.info == x && !raiz.hijoIzq.ArbolVacio())
+                {
+                    raiz.info = this.mayor(raiz.hijoIzq);
+                    raiz.hijoIzq.EliminarElem(raiz.info);
+                }
+                else if (raiz.info == x && raiz.hijoIzq.ArbolVacio())
+                {
+                    raiz.info = this.menor(raiz.hijoDer);
+                    raiz.hijoDer.EliminarElem(raiz.info);
+                }
+                else if(raiz.info < x)
+                {
+                    raiz.hijoDer.EliminarElem(x);
+                }
+                else
+                {
+                    raiz.hijoIzq.EliminarElem(x);
+                }
+            }
+        }
+
+        public int mayor(ABBTDA a)
+        {
+            if (a.HijoDer().ArbolVacio())
+            {
+                return a.Raiz();
+            }
+            else
+            {
+                return mayor(a.HijoDer());
+            }
+        }
+
+        public int menor(ABBTDA a)
+        {
+            if (a.HijoIzq(). ArbolVacio())
+            {
+                return a.Raiz();
+            }
+            else
+            {
+                return menor(a.HijoIzq());
+            }
+        }
+    }
     
     
-    
+   }
 }

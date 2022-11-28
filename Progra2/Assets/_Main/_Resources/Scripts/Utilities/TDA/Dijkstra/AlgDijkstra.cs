@@ -9,8 +9,6 @@ namespace _Main._Resources.Scripts.Utilities.TDA.Dijkstra
         public static int[] distance;
         public static string[] nodos;
         
-        //IMPLEMENTAR PARA BUSQUEDA DE WAYPOINTS, DONDE LOS NODOS SON WAYPOINTS Y LOS REFERERNCIO CON UN ARRAY DE GAMEOBJECTS
-
         private static int MinimumDistance(int[] distance, bool[] shortestPathTreeSet, int verticesCount)
         {
             int min = int.MaxValue;

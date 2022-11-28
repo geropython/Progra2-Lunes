@@ -19,7 +19,7 @@ public class TDA_Grafos : MonoBehaviour
 
     public class GrafoMA : GrafoTDA
     {
-        static int n = 100;
+        public static int n = 100;
         public int[,] MAdy;
         public int[] Etiqs;
         public int cantNodos;
