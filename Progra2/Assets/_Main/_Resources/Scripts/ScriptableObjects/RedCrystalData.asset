@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9be9e86742910a54499b499089269b77, type: 3}
-  m_Name: BlueCrystalData
+  m_Name: RedCrystalData
   m_EditorClassIdentifier: 
-  displayName: BlueCrystal
-  icon: {fileID: 21300000, guid: 2bd5b77b4790328469dcd5c09cd236f0, type: 3}
-  collectedSound: {fileID: 8300000, guid: e7868d6bbf75b59448bf64a85c4503dd, type: 3}
-  score: 2
+  displayName: 
+  icon: {fileID: 0}
+  collectedSound: {fileID: 0}
+  score: 50

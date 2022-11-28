@@ -51,6 +51,7 @@ namespace _Main._Resources.Scripts.Utilities.TDA.ABB
         {
             if (a != null)
             {
+                
                 inOrder(a.hijoIzq);
                 //Console.WriteLine(a.info.ToString());
                 inOrder(a.hijoDer);
