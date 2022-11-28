@@ -9,6 +9,53 @@ namespace _Main._Resources.Scripts.Utilities.TDA.ABB
     //REEMPLAZAR CONSOLE.WRITE... POR DEBUG LOG.
     public class ArbolesABBRecorridos : MonoBehaviour
     {
+        
+        
+        static void Main(string[] args)
+        {
+            // Arboles Binarios de Búsqueda
+            Console.WriteLine("Programa Iniciado\n");
+
+            int[] vectorEnteros = { 20, 10, 1, 26, 35, 40, 18, 12, 15, 14, 30, 23 };
+
+            // creo un TDA ABB
+            ABB arbol = new ABB();
+            arbol.InicializarArbol();
+
+            // agrego los mismos elementos del vector al arbol
+            for (int i = 0; i < vectorEnteros.Length; i++)
+            {
+                arbol.AgregarElem(ref arbol.raiz, vectorEnteros[i]);
+            }
+
+            // Altura total
+            int aTotal = altura(arbol.raiz);
+            Console.WriteLine("\nAltura total del arbol: " + aTotal.ToString());
+
+            // Pre-Order
+            Console.WriteLine("\nImpresión en Pre-Order");
+            preOrder(arbol.raiz);
+
+            // In-Order
+            Console.WriteLine("\nImpresión en In-Order");
+            inOrder(arbol.raiz);
+
+            // Post-Order
+            Console.WriteLine("\nImpresión en Post-Order");
+            postOrder(arbol.raiz);
+
+            // Level-Order
+            Console.WriteLine("\nImpresión en Level-Order");
+            levelOrder(arbol.raiz);
+
+            // Alturas con Pre-Order
+            Console.WriteLine("\nAlturas recorriendo con Pre-Order");
+            preOrder_FE(arbol.raiz);
+
+            Console.ReadKey();
+        }
+        
+        
         static int altura(NodoABB ab)
         {
             if (ab == null)
@@ -25,12 +72,12 @@ namespace _Main._Resources.Scripts.Utilities.TDA.ABB
         {
             if (a != null)
             {
-                // accion mientras recorro //
-                // Console.WriteLine("Nodo Padre: " + a.info.ToString());
-                // Console.WriteLine("Altura Izquierda: " + altura(a.hijoDer));
-                // Console.WriteLine("Altura Derecha: " + altura(a.hijoIzq));
-                // Console.WriteLine();
-                //                         //
+                //accion mientras recorro //
+                Console.WriteLine("Nodo Padre: " + a.info.ToString());
+                Console.WriteLine("Altura Izquierda: " + altura(a.hijoDer));
+                Console.WriteLine("Altura Derecha: " + altura(a.hijoIzq));
+                Console.WriteLine();
+                                        
 
                 preOrder_FE(a.hijoIzq);
                 preOrder_FE(a.hijoDer);
@@ -41,7 +88,7 @@ namespace _Main._Resources.Scripts.Utilities.TDA.ABB
         {
             if (a != null)
             {
-                //Console.WriteLine(a.info.ToString());
+                Console.WriteLine(a.info.ToString());
                 preOrder(a.hijoIzq);
                 preOrder(a.hijoDer);
             }
@@ -53,7 +100,7 @@ namespace _Main._Resources.Scripts.Utilities.TDA.ABB
             {
                 
                 inOrder(a.hijoIzq);
-                //Console.WriteLine(a.info.ToString());
+                Console.WriteLine(a.info.ToString());
                 inOrder(a.hijoDer);
             }
         }
@@ -64,7 +111,7 @@ namespace _Main._Resources.Scripts.Utilities.TDA.ABB
             {
                 postOrder(a.hijoIzq);
                 postOrder(a.hijoDer);
-                //Console.WriteLine(a.info.ToString());
+                Console.WriteLine(a.info.ToString());
             }
         }
 
@@ -78,7 +125,7 @@ namespace _Main._Resources.Scripts.Utilities.TDA.ABB
             {
                 nodo = q.Dequeue();
 
-                //Console.WriteLine(nodo.info.ToString());
+                Console.WriteLine(nodo.info.ToString());
 
                 if (nodo.hijoIzq != null) { q.Enqueue(nodo.hijoIzq); }
 
@@ -96,26 +143,26 @@ namespace _Main._Resources.Scripts.Utilities.TDA.ABB
             {
                 nodo = q.Dequeue();
 
-                //Console.WriteLine("Padre: " + nodo.info.ToString());
+                Console.WriteLine("Padre: " + nodo.info.ToString());
 
                 if (nodo.hijoIzq != null)
                 {
                     q.Enqueue(nodo.hijoIzq);
-                    //Console.WriteLine("Hijo Izq: " + nodo.hijoIzq.info.ToString());
+                    Console.WriteLine("Hijo Izq: " + nodo.hijoIzq.info.ToString());
                 }
                 else
                 {
-                    //Console.WriteLine("Hijo Izq: null");
+                    Console.WriteLine("Hijo Izq: null");
                 }
 
                 if (nodo.hijoDer != null)
                 {
                     q.Enqueue(nodo.hijoDer);
-                    //Console.WriteLine("Hijo Der: " + nodo.hijoDer.info.ToString());
+                    Console.WriteLine("Hijo Der: " + nodo.hijoDer.info.ToString());
                 }
                 else
                 {
-                    // Console.WriteLine("Hijo Der: null");
+                     Console.WriteLine("Hijo Der: null");
                 }
             }
         }

@@ -1,11 +1,33 @@
+using System;
 using UnityEngine;
 
 namespace _Main._Resources.Scripts.Utilities.TDA.ABB
 {
-    
-    // REEMPLAZAR CONSOLE.WRITE... POR DEBUG LOG Y CAMBIAR EL INT POR ALGUN OBJETO.
     public class TDA_AVL : MonoBehaviour
     {
+        
+        static void Main(string[] args)
+        {
+            // Arboles AVL
+            Console.WriteLine("Programa Iniciado\n");
+
+            // creo un TDA AVL
+            AVL tree = new AVL();
+
+            int[] vectorEnteros = { 5,3,7,2 };
+
+            for (int i = 0; i < vectorEnteros.Length; i++)
+            {
+                tree.Add(vectorEnteros[i]);
+            }
+
+            tree.DisplayTree();
+            tree.Delete(7);
+            tree.DisplayTree();
+
+            Console.ReadKey();
+        }
+        
         public class AVL
         {
             class Node

@@ -11,15 +11,17 @@ namespace _Main._Resources.Scripts.Enemies
         [SerializeField] private float lineOfSight;
         [SerializeField] private int health;
         [SerializeField] private AudioSource enemyDeath;
-        
+
         //IDamageable
         public int Health { get; set; }
-        public void Damage(int damage)
-        {
-            // health damage
-            // health -= damage;
-            // Debug.Log("Enemy DAMAGED!");
-        }
+        public static bool DijkstraMove { get; set; }
+
+        // public void Damage(int damage)
+        // {
+        //    
+        //     health -= damage;
+        //     Debug.Log("Enemy DAMAGED!");
+        // }
 
         //METHODS--------------------------------
         void Start()
@@ -42,7 +44,14 @@ namespace _Main._Resources.Scripts.Enemies
 
             if (distanceFromPlayer < lineOfSight)
             {
+                DijkstraMove = false;
+                
                 transform.position = Vector2.MoveTowards(this.transform.position, _player.position, speed * Time.deltaTime);
+            }
+
+            if (distanceFromPlayer > lineOfSight)
+            {
+                DijkstraMove = true;
             }
         }
 

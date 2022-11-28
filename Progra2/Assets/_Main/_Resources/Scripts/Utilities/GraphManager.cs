@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Main._Resources.Scripts.Enemies;
 using _Main._Resources.Scripts.Utilities.TDA.Dijkstra;
 using UnityEngine;
 using _Main._Resources.Scripts.Utilities.TDA.Graphs;
@@ -18,7 +19,8 @@ public class GraphManager : MonoBehaviour
     private bool isAtPoint; // Llegue al punto que me corresponde?
     [SerializeField] private float moveSpeed = 5f; // Velocidad de movimiento del objeto
     private Rigidbody2D rb;
-   
+    private BatScript batScript;
+    
     private float areaDistance = 0.5f; // Area alrededor del punto a donde tiene que llegar para que no tenga que ser tan preciso
     
     
@@ -27,6 +29,7 @@ public class GraphManager : MonoBehaviour
     {
         // Guardo referencia al controlador del enemigo
         rb = GetComponent<Rigidbody2D>();
+        batScript = GetComponent<BatScript>();
         SetSpawnPoint(spawn);
     }
 
@@ -60,12 +63,12 @@ public class GraphManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        // Comprueba si puede moverse por dijkstra
-        // if (enemyController.DijkstraMove)
-        // {
-        //     // Movimiento utilizando el camino generado por dijkstra
-        //     DijkstraMove();
-        // }
+       // Comprueba si puede moverse por dijkstra
+        if (BatScript.DijkstraMove)
+        {
+            // Movimiento utilizando el camino generado por dijkstra
+            DijkstraMove();
+        }
         DijkstraMove();
     }
 
@@ -165,7 +168,8 @@ public class GraphManager : MonoBehaviour
            NodeUpdate();
        }
        // Como no llego, trata de ir hacia el punto
-       rb.velocity = (dir.normalized * (moveSpeed * Time.deltaTime));
+       transform.position = Vector3.MoveTowards(this.transform.position, pathCurrent.position, moveSpeed* Time.deltaTime);
+      // rb.velocity = (dir.normalized * (moveSpeed * Time.deltaTime));
    }
 
    private void NodeUpdate()
