@@ -1,11 +1,6 @@
-
-using System;
 using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
-using UnityEngine.UI;
 
-namespace _Main._Resources.Scripts.Utilities.DataStructure
+namespace _Main._Resources.Scripts.Utilities.TDA.QuickSort
 {
     public  class QuickSort : MonoBehaviour
     {

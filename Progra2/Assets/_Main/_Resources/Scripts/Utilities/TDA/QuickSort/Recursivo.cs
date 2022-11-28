@@ -1,17 +1,27 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using Random = System.Random;
 
 namespace _Main._Resources.Scripts.Utilities.TDA.QuickSort
 {
     public class Recursivo : MonoBehaviour
     {
-        public class Player
+
+        [SerializeField] private int[] scores = { 10, 25, 50, 15, 30, 45, 5, 80, 90, 150 };
+        private HighScore[] arrayHighScores = new HighScore[10];
+        private Random random = new System.Random();
+
+      
+        
+        public class HighScore
         {
             public string name;
             public int score;
 
         }
 
-        static public int Partition(Player[] arr, int left, int right)
+        static public int Partition(HighScore[] arr, int left, int right)
         {
             int pivot;
             int aux = (left + right) / 2;   //tomo el valor central del vector
@@ -41,7 +51,7 @@ namespace _Main._Resources.Scripts.Utilities.TDA.QuickSort
                 }
             }
         }
-        static public void quickSort(Player[] arr, int left, int right)
+        static public void quickSort(HighScore[] arr, int left, int right)
         {
             int pivot;
             if (left < right)
@@ -60,16 +70,35 @@ namespace _Main._Resources.Scripts.Utilities.TDA.QuickSort
             }
         }
 
-        static void imprimirVector(Player[] vec)
+        // ReSharper disable Unity.PerformanceAnalysis
+        static void imprimirVector(HighScore[] vec)
         {
             for (int i = 0; i < vec.Length; i++)
             {
-                //Console.WriteLine(vec[i].name + " " + vec[i].score);
+               Debug.Log(vec[i].name + " " + vec[i].score);
             }
         }
 
-    
-    
-    
+        public void Start()
+        {
+           
+            Debug.Log("Inicializa QuickSort");
+            for (int i = 0; i < 10; i++)
+            {
+                arrayHighScores[i] = new HighScore();
+                arrayHighScores[i].name = "HighScore_" + i.ToString();
+                arrayHighScores[i].score = random.Next(1, 100);
+                
+            }
+            imprimirVector(arrayHighScores);
+            quickSort(arrayHighScores, 0, arrayHighScores.Length -1);
+            imprimirVector(arrayHighScores);
+        }
+
+        public void Update()
+        {
+           
+           
+        }
     }
 }
