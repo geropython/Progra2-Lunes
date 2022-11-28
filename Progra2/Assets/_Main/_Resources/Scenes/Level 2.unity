@@ -566,7 +566,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6913247005121900516, guid: 905ce0d6e01939b49b3f2bdfb0a89e03, type: 3}
       propertyPath: maxHealth
-      value: 200
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -6913247005121900516, guid: 905ce0d6e01939b49b3f2bdfb0a89e03, type: 3}
       propertyPath: lineOfSight

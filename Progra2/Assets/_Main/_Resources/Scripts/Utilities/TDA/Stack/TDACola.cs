@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : ICola
+public partial class NewBehaviourScript : ICola
 {
     // Clase del PROFESOR
 
