@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2bd5b77b4790328469dcd5c09cd236f0, type: 3}
-  m_Color: {r: 0, g: 0.24680638, b: 1, a: 1}
+  m_Color: {r: 0.0126776695, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -145,4 +145,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90346cc49eda7a34cbbbd2c68087b5d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cristalData: {fileID: 11400000, guid: 181699705aeb30e48b175ff7faa8374d, type: 2}
+  cristalData: {fileID: 11400000, guid: 1d39e5a8d21162746b7ea103478007f0, type: 2}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8123656339917983426}
   - component: {fileID: 635550455}
   m_Layer: 3
-  m_Name: PurpleCrystal
+  m_Name: RedCrystal
   m_TagString: Items
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 11fb3824623784c479499ab9db6b726f, type: 3}
-  m_Color: {r: 0.6093364, g: 0, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 2bd5b77b4790328469dcd5c09cd236f0, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -145,4 +145,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90346cc49eda7a34cbbbd2c68087b5d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cristalData: {fileID: 11400000, guid: 5bb187e18eca04e4d940aaa00190eeda, type: 2}
+  cristalData: {fileID: 11400000, guid: 29bf498fc2bbf974c919844ad4706219, type: 2}
