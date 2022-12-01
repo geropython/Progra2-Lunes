@@ -11,7 +11,7 @@ namespace _Main._Resources.Scripts.Utilities
             if (collision.gameObject.CompareTag("Player"))
             {
                 SecondKey.SetActive(true);
-                SceneManager.LoadScene("WinScreen");
+                SceneManager.LoadScene("Level3");
                 Debug.Log("Collected");
                 Destroy(this.gameObject);
                 Cursor.lockState = CursorLockMode.None;
