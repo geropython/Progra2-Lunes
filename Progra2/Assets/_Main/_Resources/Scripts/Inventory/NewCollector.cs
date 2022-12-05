@@ -18,35 +18,36 @@ namespace _Main._Resources.Scripts.Inventory
         
         private Scene _currentScene;
 
+        //high Score values for the data Sorting
         private static int _highScoreValue;
         private static int _highScoreValue2;
         private static int _highScoreValue3;
+        
+        //Array of high Score integers
+        private int[] _highScore ={_highScoreValue,_highScoreValue2, _highScoreValue3};
+        
       
         
-        
-        private int[] _highScore ={_highScoreValue,_highScoreValue2, _highScoreValue3};
-
-        // Implementar Arboles
         public int crystals;
         
-        private void Start()
+        private void Start()   //here we get the reference to the Player´s high score based on every Scene active
         {
             _currentScene = SceneManager.GetActiveScene();
             crystals = 0;
             highScore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
             highScore2.text = PlayerPrefs.GetInt("HighScore2", 0).ToString();
             highScore3.text = PlayerPrefs.GetInt("HighScore3", 0).ToString();
-            _highScoreValue = PlayerPrefs.GetInt("HighScore");
-            _highScoreValue2 = PlayerPrefs.GetInt("HighScore2");
-            _highScoreValue3= PlayerPrefs.GetInt("HighScore3");
-            
            
+            
+            //QUICKSORT??¿
+           // Recursivo.quickSort(  _highScore, 0,   _highScore.Length-1);
+            
+            //SI COLOCAMOS EL QUICKSORT ACÁ, SE TRABA UNITY DIRECTAMENTE.
         }
 
-        private void Update()
+        private void Update()    //Do NOT USE QUICKSORT HERE
         {
             scoreText.text = " : " + crystals;
-           // Recursivo.quickSort(  _highScore, 0,   _highScore.Length-1);
             
         }
 
@@ -63,23 +64,27 @@ namespace _Main._Resources.Scripts.Inventory
                 {
                     if (_currentScene == SceneManager.GetSceneByBuildIndex(1))
                     {
-                        PlayerPrefs.SetInt("HighScore",crystals);
+                        PlayerPrefs.SetInt("HighScore", crystals);
                         highScore.text = crystals.ToString();
-                       
-                        
+                        _highScoreValue = PlayerPrefs.GetInt("HighScore");
+                        //NO SABEMOS  CÓMO PASAR LOS HIGHSCORES ORDENADOS A UN DEBUG LOG EN CONSOLA UNITY.
+
+
                     }
                     else if (_currentScene == SceneManager.GetSceneByBuildIndex(2))
                     {
-                        PlayerPrefs.SetInt("HighScore2",crystals);
+                        PlayerPrefs.SetInt("HighScore2", crystals);
                         highScore2.text = crystals.ToString();
-                       
+                        _highScoreValue2 = PlayerPrefs.GetInt("HighScore2");
+                        //NO SABEMOS  CÓMO PASAR LOS HIGHSCORES ORDENADOS A UN DEBUG LOG EN CONSOLA UNITY.
                     }
 
                     else if (_currentScene == SceneManager.GetSceneByBuildIndex(3))
                     {
                         PlayerPrefs.SetInt("HighScore3",crystals);
                         highScore3.text = crystals.ToString();
-                       
+                        _highScoreValue3= PlayerPrefs.GetInt("HighScore3");
+                        //NO SABEMOS  CÓMO PASAR LOS HIGHSCORES ORDENADOS A UN DEBUG LOG EN CONSOLA UNITY.
                     }
                     
                 }
@@ -87,53 +92,55 @@ namespace _Main._Resources.Scripts.Inventory
 
         }
         
-        public void Reset()
+        public void Reset()    //RESETING HIGHSCORES FROM MAIN MENU ( PLAYER PREFS RESET)
         {
                 PlayerPrefs.DeleteAll();
         }
 
-        private int[] highscores = new int[3]; // valores que muestra en los score text
-        List<TextMeshProUGUI> scores; // donde se muestran los scores (textmeshproUI)
-
-        private void GetHighScores()
-        {
-            int highscore0 = PlayerPrefs.GetInt("HighScore");
-            int highscore1= PlayerPrefs.GetInt("HighScore2");
-            int highscore2 = PlayerPrefs.GetInt("HighScore3");
-           // int highscore3 =PlayerPrefs.GetInt("HighScore3");
-
-            List<int> highscorecheck = new List<int>(4);
-            var lowest = 9999;
-            for (int i = 0; i <highscorecheck.Count; i++)
-            {
-                int aux = 0;
-                highscorecheck[i] = aux;
-                lowest = aux;
-            }
-            if (highscorecheck.Contains(lowest))
-            {
-                highscorecheck.Remove(lowest);
-            }
-
-            for (int i = 0; i < highscorecheck.Count; i++)
-            {
-                highscores[i]= (highscorecheck[i]);
-            }
-            
-            Recursivo.quickSort(highscores,0,highscores.Length -1);
-           Array.Reverse(highscores);
-           
-           for (int i = 0; i < highscores.Length; i++)
-           {
-               scores[i].text = highscores[i].ToString();
-           }
-
-           PlayerPrefs.SetInt("HighScore", highscores[0]);
-           PlayerPrefs.SetInt("HighScore2", highscores[1]);
-           PlayerPrefs.SetInt("HighScore3", highscores[2]);
-           
-           
-        }
+         //MAXÍS------------------------
+         
+        // private int[] highscores = new int[3]; // valores que muestra en los score text
+        // List<TextMeshProUGUI> scores; // donde se muestran los scores (textmeshproUI)
+        //
+        // private void GetHighScores()
+        // {
+        //     int highscore0 = PlayerPrefs.GetInt("HighScore");
+        //     int highscore1= PlayerPrefs.GetInt("HighScore2");
+        //     int highscore2 = PlayerPrefs.GetInt("HighScore3");
+        //    // int highscore3 =PlayerPrefs.GetInt("HighScore3");
+        //
+        //     List<int> highscorecheck = new List<int>(4);
+        //     var lowest = 9999;
+        //     for (int i = 0; i <highscorecheck.Count; i++)
+        //     {
+        //         int aux = 0;
+        //         highscorecheck[i] = aux;
+        //         lowest = aux;
+        //     }
+        //     if (highscorecheck.Contains(lowest))
+        //     {
+        //         highscorecheck.Remove(lowest);
+        //     }
+        //
+        //     for (int i = 0; i < highscorecheck.Count; i++)
+        //     {
+        //         highscores[i]= (highscorecheck[i]);
+        //     }
+        //     
+        //     Recursivo.quickSort(highscores,0,highscores.Length -1);
+        //    Array.Reverse(highscores);
+        //    
+        //    for (int i = 0; i < highscores.Length; i++)
+        //    {
+        //        scores[i].text = highscores[i].ToString();
+        //    }
+        //
+        //    PlayerPrefs.SetInt("HighScore", highscores[0]);
+        //    PlayerPrefs.SetInt("HighScore2", highscores[1]);
+        //    PlayerPrefs.SetInt("HighScore3", highscores[2]);
+        //    
+        //    
+        // }
         
 // lista auxiliar para fijarme cual es el menor y borrarlo para que no se guarde ni muestre
        
