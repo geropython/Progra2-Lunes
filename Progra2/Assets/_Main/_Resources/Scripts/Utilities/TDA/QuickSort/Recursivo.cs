@@ -30,9 +30,7 @@ namespace _Main._Resources.Scripts.Utilities.TDA.QuickSort
 
             if (left < right)
             {
-                int temp = arr[right];
-                arr[right] = arr[left];
-                arr[left] = temp;
+                (arr[right], arr[left]) = (arr[left], arr[right]);
             }
             else
             {
