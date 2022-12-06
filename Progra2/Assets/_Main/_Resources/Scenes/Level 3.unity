@@ -30003,6 +30003,9 @@ MonoBehaviour:
   highScore3: {fileID: 1789371140}
   highScore2: {fileID: 1042017646}
   pickUpSound: {fileID: 822900345}
+  _highScoreValue: 500
+  _highScoreValue2: 450
+  _highScoreValue3: 100
   crystals: 0
 --- !u!1 &828219852
 GameObject:

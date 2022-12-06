@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using _Main._Resources.Scripts.Utilities.TDA.QuickSort;
 using TMPro;
 using UnityEngine;
@@ -12,66 +10,74 @@ namespace _Main._Resources.Scripts.Inventory
         //poder integrar QuickSort con el collector / los cristales para llevar el conteo maximo de cada uno.
         [SerializeField] private TextMeshProUGUI scoreText;
         [SerializeField] private TextMeshProUGUI highScore;
-         [SerializeField] private TextMeshProUGUI highScore3;
+        [SerializeField] private TextMeshProUGUI highScore3;
         [SerializeField] private TextMeshProUGUI highScore2;
         [SerializeField] private AudioSource pickUpSound;
-        
-        private Scene _currentScene;
 
         //high Score values for the data Sorting
-        private static int _highScoreValue;
-        private static int _highScoreValue2;
-        private static int _highScoreValue3;
-        
-        //Array of high Score integers
-        private int[] _highScore ={_highScoreValue,_highScoreValue2, _highScoreValue3};
-        
-      
-        
+        [SerializeField] private int _highScoreValue;
+        [SerializeField] private int _highScoreValue2;
+        [SerializeField] private int _highScoreValue3;
+
         public int crystals;
-        
-        private void Start()   //here we get the reference to the Player´s high score based on every Scene active
+
+        private Scene _currentScene;
+
+
+        //Array of high Score integers
+        private int[] _highScore;
+
+        [ContextMenu("RESET SCORES")]
+        public void Reset() //RESETING HIGHSCORES FROM MAIN MENU ( PLAYER PREFS RESET)
+        {
+            PlayerPrefs.DeleteAll();
+        }
+
+        private void Start() //here we get the reference to the Player´s high score based on every Scene active
         {
             _currentScene = SceneManager.GetActiveScene();
             crystals = 0;
             highScore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
             highScore2.text = PlayerPrefs.GetInt("HighScore2", 0).ToString();
             highScore3.text = PlayerPrefs.GetInt("HighScore3", 0).ToString();
-            //QUICKSORT??¿
+
+
+            UpdatePlayerPrefs();
+            _highScore = new int [3];
+            _highScore[0] = _highScoreValue;
+            _highScore[1] = _highScoreValue2;
+            _highScore[2] = _highScoreValue3;
+
+
+            foreach (var score in _highScore) Debug.Log(score);
         }
 
-        private void Update()    //Do NOT USE QUICKSORT HERE
+        private void Update()
         {
             scoreText.text = " : " + crystals;
-            
-        }
-
-        private void SaveHighScore()
-        {
-            
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            ICollectable collectable = collision.GetComponent<ICollectable>();
+            var collectable = collision.GetComponent<ICollectable>();
             if (collectable != null)
             {
                 collectable.Collect();
                 pickUpSound.Play();
                 crystals++;
 
-               // if (crystals > PlayerPrefs.GetInt("HighScore", 0))
+
                 {
-                    if (_currentScene == SceneManager.GetSceneByBuildIndex(1) && crystals > PlayerPrefs.GetInt("HighScore", 0) )
+                    if (_currentScene == SceneManager.GetSceneByBuildIndex(1) &&
+                        crystals > PlayerPrefs.GetInt("HighScore", 0))
                     {
                         PlayerPrefs.SetInt("HighScore", crystals);
                         highScore.text = crystals.ToString();
                         _highScoreValue = PlayerPrefs.GetInt("HighScore");
                         //NO SABEMOS  CÓMO PASAR LOS HIGHSCORES ORDENADOS A UN DEBUG LOG EN CONSOLA UNITY.
-
-
                     }
-                    else if (_currentScene == SceneManager.GetSceneByBuildIndex(2) && crystals > PlayerPrefs.GetInt("HighScore2", 0))
+                    else if (_currentScene == SceneManager.GetSceneByBuildIndex(2) &&
+                             crystals > PlayerPrefs.GetInt("HighScore2", 0))
                     {
                         PlayerPrefs.SetInt("HighScore2", crystals);
                         highScore2.text = crystals.ToString();
@@ -79,85 +85,34 @@ namespace _Main._Resources.Scripts.Inventory
                         //NO SABEMOS  CÓMO PASAR LOS HIGHSCORES ORDENADOS A UN DEBUG LOG EN CONSOLA UNITY.
                     }
 
-                    else if (_currentScene == SceneManager.GetSceneByBuildIndex(3) && crystals > PlayerPrefs.GetInt("HighScore3", 0))
+                    else if (_currentScene == SceneManager.GetSceneByBuildIndex(3) &&
+                             crystals > PlayerPrefs.GetInt("HighScore3", 0))
                     {
-                        PlayerPrefs.SetInt("HighScore3",crystals);
+                        PlayerPrefs.SetInt("HighScore3", crystals);
                         highScore3.text = crystals.ToString();
-                        _highScoreValue3= PlayerPrefs.GetInt("HighScore3");
+                        _highScoreValue3 = PlayerPrefs.GetInt("HighScore3");
                         //NO SABEMOS  CÓMO PASAR LOS HIGHSCORES ORDENADOS A UN DEBUG LOG EN CONSOLA UNITY.
                     }
-                    
                 }
             }
-            // Recursivo.quickSort( _highScore, 0,_highScore.Length-1);
-            // foreach (var score in _highScore)
-            // {
-            //     Debug.Log(score);
-            // }
-            
         }
-        
-        [ContextMenu("RESET SCORES")]
-        public void Reset()    //RESETING HIGHSCORES FROM MAIN MENU ( PLAYER PREFS RESET)
+
+        [ContextMenu("crash UNITY")]
+        private void QuickCrashing()
         {
-                PlayerPrefs.DeleteAll();
+            Recursivo.quickSort(_highScore, 0, _highScore.Length - 1);
+            foreach (var score in _highScore) Debug.Log(score);
         }
 
-         //MAXÍS------------------------
-         
-        // private int[] highscores = new int[3]; // valores que muestra en los score text
-        // List<TextMeshProUGUI> scores; // donde se muestran los scores (textmeshproUI)
-        //
-        // private void GetHighScores()
-        // {
-        //     int highscore0 = PlayerPrefs.GetInt("HighScore");
-        //     int highscore1= PlayerPrefs.GetInt("HighScore2");
-        //     int highscore2 = PlayerPrefs.GetInt("HighScore3");
-        //    // int highscore3 =PlayerPrefs.GetInt("HighScore3");
-        //
-        //     List<int> highscorecheck = new List<int>(4);
-        //     var lowest = 9999;
-        //     for (int i = 0; i <highscorecheck.Count; i++)
-        //     {
-        //         int aux = 0;
-        //         highscorecheck[i] = aux;
-        //         lowest = aux;
-        //     }
-        //     if (highscorecheck.Contains(lowest))
-        //     {
-        //         highscorecheck.Remove(lowest);
-        //     }
-        //
-        //     for (int i = 0; i < highscorecheck.Count; i++)
-        //     {
-        //         highscores[i]= (highscorecheck[i]);
-        //     }
-        //     
-        //     Recursivo.quickSort(highscores,0,highscores.Length -1);
-        //    Array.Reverse(highscores);
-        //    
-        //    for (int i = 0; i < highscores.Length; i++)
-        //    {
-        //        scores[i].text = highscores[i].ToString();
-        //    }
-        //
-        //    PlayerPrefs.SetInt("HighScore", highscores[0]);
-        //    PlayerPrefs.SetInt("HighScore2", highscores[1]);
-        //    PlayerPrefs.SetInt("HighScore3", highscores[2]);
-        //    
-        //    
-        // }
-        
-// lista auxiliar para fijarme cual es el menor y borrarlo para que no se guarde ni muestre
-       
-// metodo para fijarme cual es el mas chico y sacarlo y guardarlos en su array para ser ordenado
 
-//ordena el array con los 3 valores mas altos de highscore
-// buscar como invertir el array array.reverse? quizas funciona
-
-// muestra los valores en sus respectivas posiciones en la UI
-
-// guarda esos 3 valores para poder seguir viendolos en otras partidas
-   
+        private void UpdatePlayerPrefs() //DA ERROR
+        {
+            var a = PlayerPrefs.GetInt("HighScore", 0);
+            var b = PlayerPrefs.GetInt("HighScore2", 0);
+            var c = PlayerPrefs.GetInt("HighScore3", 0);
+            _highScoreValue = a;
+            _highScoreValue2 = b;
+            _highScoreValue3 = c;
+        }
     }
 }
