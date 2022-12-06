@@ -37,17 +37,17 @@ namespace _Main._Resources.Scripts.Inventory
             highScore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
             highScore2.text = PlayerPrefs.GetInt("HighScore2", 0).ToString();
             highScore3.text = PlayerPrefs.GetInt("HighScore3", 0).ToString();
-           
-            
             //QUICKSORT??¿
-           // Recursivo.quickSort(  _highScore, 0,   _highScore.Length-1);
-            
-            //SI COLOCAMOS EL QUICKSORT ACÁ, SE TRABA UNITY DIRECTAMENTE.
         }
 
         private void Update()    //Do NOT USE QUICKSORT HERE
         {
             scoreText.text = " : " + crystals;
+            
+        }
+
+        private void SaveHighScore()
+        {
             
         }
 
@@ -60,9 +60,9 @@ namespace _Main._Resources.Scripts.Inventory
                 pickUpSound.Play();
                 crystals++;
 
-                if (crystals > PlayerPrefs.GetInt("HighScore", 0))
+               // if (crystals > PlayerPrefs.GetInt("HighScore", 0))
                 {
-                    if (_currentScene == SceneManager.GetSceneByBuildIndex(1))
+                    if (_currentScene == SceneManager.GetSceneByBuildIndex(1) && crystals > PlayerPrefs.GetInt("HighScore", 0) )
                     {
                         PlayerPrefs.SetInt("HighScore", crystals);
                         highScore.text = crystals.ToString();
@@ -71,7 +71,7 @@ namespace _Main._Resources.Scripts.Inventory
 
 
                     }
-                    else if (_currentScene == SceneManager.GetSceneByBuildIndex(2))
+                    else if (_currentScene == SceneManager.GetSceneByBuildIndex(2) && crystals > PlayerPrefs.GetInt("HighScore2", 0))
                     {
                         PlayerPrefs.SetInt("HighScore2", crystals);
                         highScore2.text = crystals.ToString();
@@ -79,7 +79,7 @@ namespace _Main._Resources.Scripts.Inventory
                         //NO SABEMOS  CÓMO PASAR LOS HIGHSCORES ORDENADOS A UN DEBUG LOG EN CONSOLA UNITY.
                     }
 
-                    else if (_currentScene == SceneManager.GetSceneByBuildIndex(3))
+                    else if (_currentScene == SceneManager.GetSceneByBuildIndex(3) && crystals > PlayerPrefs.GetInt("HighScore3", 0))
                     {
                         PlayerPrefs.SetInt("HighScore3",crystals);
                         highScore3.text = crystals.ToString();
@@ -89,9 +89,15 @@ namespace _Main._Resources.Scripts.Inventory
                     
                 }
             }
-
+            // Recursivo.quickSort( _highScore, 0,_highScore.Length-1);
+            // foreach (var score in _highScore)
+            // {
+            //     Debug.Log(score);
+            // }
+            
         }
         
+        [ContextMenu("RESET SCORES")]
         public void Reset()    //RESETING HIGHSCORES FROM MAIN MENU ( PLAYER PREFS RESET)
         {
                 PlayerPrefs.DeleteAll();
