@@ -8,17 +8,13 @@ namespace _Main._Resources.Scripts.Inventory
     {
         public static event HandleCristalCollected OnCristalCollected;
         public delegate void HandleCristalCollected(ItemData itemData);
-        public ItemData cristalData;
-
-       
+        public ItemData cristalData;       
 
         public void Collect()
         {
             Destroy(gameObject);
             AudioClip.Instantiate(cristalData);
-            OnCristalCollected?.Invoke(cristalData);
-           
-            
+            OnCristalCollected?.Invoke(cristalData);            
         }
     }
 }
