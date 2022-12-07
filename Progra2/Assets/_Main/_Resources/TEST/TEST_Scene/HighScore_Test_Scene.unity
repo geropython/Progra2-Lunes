@@ -203,6 +203,77 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71768628}
   m_CullTransparentMesh: 1
+--- !u!1 &151629520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 151629521}
+  - component: {fileID: 151629522}
+  - component: {fileID: 151629523}
+  m_Layer: 0
+  m_Name: TEST_ABB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &151629521
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151629520}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.806248, y: 8.987712, z: 4.399706}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &151629522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151629520}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9135e36bcd3c4e449ab13c601b72f69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normalCrystal: {fileID: 11400000, guid: 181699705aeb30e48b175ff7faa8374d, type: 2}
+  _blueCrystal: {fileID: 11400000, guid: 1d39e5a8d21162746b7ea103478007f0, type: 2}
+  _redCrystal: {fileID: 11400000, guid: 29bf498fc2bbf974c919844ad4706219, type: 2}
+  _purpleCrystal: {fileID: 11400000, guid: 5bb187e18eca04e4d940aaa00190eeda, type: 2}
+  _greenCrystal: {fileID: 11400000, guid: ddd1f507bd6f64a4eaaedd0a5767aaa1, type: 2}
+  _orangeCrystal: {fileID: 11400000, guid: 6773e6ba48f90bf47bac45b4fd822714, type: 2}
+  _pinkCrystal: {fileID: 11400000, guid: 530bbb2086e8bd347a05938712cae2b2, type: 2}
+--- !u!114 &151629523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151629520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d63647e6fa91634dad35a20ba20c0eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normalCrystal: {fileID: 11400000, guid: 181699705aeb30e48b175ff7faa8374d, type: 2}
+  _blueCrystal: {fileID: 11400000, guid: 1d39e5a8d21162746b7ea103478007f0, type: 2}
+  _redCrystal: {fileID: 11400000, guid: 29bf498fc2bbf974c919844ad4706219, type: 2}
+  _purpleCrystal: {fileID: 11400000, guid: 5bb187e18eca04e4d940aaa00190eeda, type: 2}
+  _greenCrystal: {fileID: 11400000, guid: ddd1f507bd6f64a4eaaedd0a5767aaa1, type: 2}
+  _orangeCrystal: {fileID: 11400000, guid: 6773e6ba48f90bf47bac45b4fd822714, type: 2}
+  _pinkCrystal: {fileID: 11400000, guid: 530bbb2086e8bd347a05938712cae2b2, type: 2}
 --- !u!1 &267510505
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,7 +776,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1334886677
 MonoBehaviour:
   m_ObjectHideFlags: 0

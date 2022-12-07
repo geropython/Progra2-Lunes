@@ -146,3 +146,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cristalData: {fileID: 11400000, guid: 7bbd5c0c1147c384daada3b03ddabe75, type: 2}
+  score: 5
