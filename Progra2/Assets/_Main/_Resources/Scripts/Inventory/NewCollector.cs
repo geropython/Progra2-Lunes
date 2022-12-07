@@ -1,3 +1,4 @@
+using _Main._Resources.Scripts.Utilities;
 using _Main._Resources.Scripts.Utilities.TDA.QuickSort;
 using TMPro;
 using UnityEngine;
@@ -14,12 +15,12 @@ namespace _Main._Resources.Scripts.Inventory
         [SerializeField] private TextMeshProUGUI highScore2;
         [SerializeField] private AudioSource pickUpSound;
 
-        //high Score values for the data Sorting
+        public int crystals;
+
+        // high Score values for the data Sorting                      Pasar los valores estos 
         [SerializeField] private int _highScoreValue;
         [SerializeField] private int _highScoreValue2;
         [SerializeField] private int _highScoreValue3;
-
-        public int crystals;
 
         private Scene _currentScene;
 
@@ -37,9 +38,9 @@ namespace _Main._Resources.Scripts.Inventory
         {
             _currentScene = SceneManager.GetActiveScene();
             crystals = 0;
-            highScore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
-            highScore2.text = PlayerPrefs.GetInt("HighScore2", 0).ToString();
-            highScore3.text = PlayerPrefs.GetInt("HighScore3", 0).ToString();
+            _highScoreValue = PlayerPrefs.GetInt("HighScore", 0);
+            _highScoreValue2 = PlayerPrefs.GetInt("HighScore2", 0);
+            _highScoreValue3 = PlayerPrefs.GetInt("HighScore3", 0);
 
 
             UpdatePlayerPrefs();
@@ -57,6 +58,21 @@ namespace _Main._Resources.Scripts.Inventory
             scoreText.text = " : " + crystals;
         }
 
+
+        private void OnEnable()
+        {
+            SecondKeyItem.OnLevelChange += SaveHighScore;
+            //Key item
+            // otra key final
+        }
+
+        private void OnDisable()
+        {
+            SecondKeyItem.OnLevelChange -= SaveHighScore;
+            //Key item
+            // otra key final
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             var collectable = collision.GetComponent<ICollectable>();
@@ -70,29 +86,16 @@ namespace _Main._Resources.Scripts.Inventory
                 {
                     if (_currentScene == SceneManager.GetSceneByBuildIndex(1) &&
                         crystals > PlayerPrefs.GetInt("HighScore", 0))
-                    {
-                        PlayerPrefs.SetInt("HighScore", crystals);
                         highScore.text = crystals.ToString();
-                        _highScoreValue = PlayerPrefs.GetInt("HighScore");
-                        //NO SABEMOS  CÓMO PASAR LOS HIGHSCORES ORDENADOS A UN DEBUG LOG EN CONSOLA UNITY.
-                    }
+
                     else if (_currentScene == SceneManager.GetSceneByBuildIndex(2) &&
                              crystals > PlayerPrefs.GetInt("HighScore2", 0))
-                    {
-                        PlayerPrefs.SetInt("HighScore2", crystals);
                         highScore2.text = crystals.ToString();
-                        _highScoreValue2 = PlayerPrefs.GetInt("HighScore2");
-                        //NO SABEMOS  CÓMO PASAR LOS HIGHSCORES ORDENADOS A UN DEBUG LOG EN CONSOLA UNITY.
-                    }
+
 
                     else if (_currentScene == SceneManager.GetSceneByBuildIndex(3) &&
                              crystals > PlayerPrefs.GetInt("HighScore3", 0))
-                    {
-                        PlayerPrefs.SetInt("HighScore3", crystals);
                         highScore3.text = crystals.ToString();
-                        _highScoreValue3 = PlayerPrefs.GetInt("HighScore3");
-                        //NO SABEMOS  CÓMO PASAR LOS HIGHSCORES ORDENADOS A UN DEBUG LOG EN CONSOLA UNITY.
-                    }
                 }
             }
         }
@@ -100,8 +103,9 @@ namespace _Main._Resources.Scripts.Inventory
         [ContextMenu("crash UNITY")]
         private void QuickCrashing()
         {
-            Recursivo.quickSort(_highScore, 0, _highScore.Length - 1);
-            foreach (var score in _highScore) Debug.Log(score);
+            var scoreArray = new[] { 75, 45, 71, 10, 5 }; // Cambiar los valores a mano por los highscoresValue.
+            scoreArray.QuickSort(0, scoreArray.Length - 1);
+            foreach (var score in scoreArray) Debug.Log(score);
         }
 
 
@@ -113,6 +117,11 @@ namespace _Main._Resources.Scripts.Inventory
             _highScoreValue = a;
             _highScoreValue2 = b;
             _highScoreValue3 = c;
+        }
+
+        private void SaveHighScore()
+        {
+            // Leer los highscores
         }
     }
 }
