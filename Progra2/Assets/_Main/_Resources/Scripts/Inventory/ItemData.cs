@@ -10,4 +10,6 @@ public class ItemData : ScriptableObject
     public AudioClip collectedSound;
     public int score;
 
+    [field: SerializeField]
+    public GameObject Prefab { get; private set; }
 }

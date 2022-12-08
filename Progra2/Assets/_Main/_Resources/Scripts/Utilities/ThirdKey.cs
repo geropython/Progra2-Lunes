@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace _Main._Resources.Scripts.Utilities
 {
-    public class SecondKeyItem : MonoBehaviour
+    public class ThirdKey : MonoBehaviour
     {
         [SerializeField] private GameObject SecondKey;
 
@@ -16,7 +16,7 @@ namespace _Main._Resources.Scripts.Utilities
                 Debug.Log("Collected");
                 Cursor.lockState = CursorLockMode.None;
                 OnLevelChange?.Invoke();
-                SceneManager.LoadScene("Level3");
+                SceneManager.LoadScene("Level2");
             }
         }
 

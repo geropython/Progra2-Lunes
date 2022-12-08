@@ -10137,6 +10137,18 @@ PrefabInstance:
       propertyPath: highScore3
       value: 
       objectReference: {fileID: 419169012}
+    - target: {fileID: 679536117, guid: e7327a52201ce5f47a7d4722d019d840, type: 3}
+      propertyPath: _highScoreValue
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 679536117, guid: e7327a52201ce5f47a7d4722d019d840, type: 3}
+      propertyPath: _highScoreValue2
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 679536117, guid: e7327a52201ce5f47a7d4722d019d840, type: 3}
+      propertyPath: _highScoreValue3
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6211607114924382618, guid: e7327a52201ce5f47a7d4722d019d840, type: 3}
       propertyPath: m_Name
       value: Player
