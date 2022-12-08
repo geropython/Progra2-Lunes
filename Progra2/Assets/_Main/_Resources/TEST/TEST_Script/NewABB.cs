@@ -1,42 +1,38 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TEST_ABB_Nacho : MonoBehaviour
+public class NewABB : MonoBehaviour
 {
-    [SerializeField] ItemData _normalCrystal;
-    [SerializeField] ItemData _blueCrystal;
-    [SerializeField] ItemData _redCrystal;
-    [SerializeField] ItemData _purpleCrystal;
-    [SerializeField] ItemData _greenCrystal;
-    [SerializeField] ItemData _orangeCrystal;
-    [SerializeField] ItemData _pinkCrystal;
+    [SerializeField] private ItemData _normalCrystal;
+    [SerializeField] private ItemData _blueCrystal;
+    [SerializeField] private ItemData _redCrystal;
+    [SerializeField] private ItemData _purpleCrystal;
+    [SerializeField] private ItemData _greenCrystal;
+    [SerializeField] private ItemData _orangeCrystal;
+    [SerializeField] private ItemData _pinkCrystal;
 
-    private BinaryTree _arbol = new BinaryTree();
+    private readonly BinaryTree _arbol = new();
 
     private int[] crystals;
 
     private void Start()
     {
-        crystals = new int[]
-        {_normalCrystal.score,
-        _blueCrystal.score,
-        _redCrystal.score,
-        _purpleCrystal.score,
-        _greenCrystal.score,
-        _orangeCrystal.score,
-        _pinkCrystal.score
+        crystals = new[]
+        {
+            _normalCrystal.score,
+            _blueCrystal.score,
+            _redCrystal.score,
+            _purpleCrystal.score,
+            _greenCrystal.score,
+            _orangeCrystal.score,
+            _pinkCrystal.score
         };
 
 
-        for (int i = 0; i < crystals.Length; i++)
-        {
-            _arbol.Add(crystals[i]);
-        }
+        for (var i = 0; i < crystals.Length; i++) _arbol.Add(crystals[i]);
 
-        Node node = _arbol.Find(5);
-        int depth = _arbol.GetTreeDepth();
+        var node = _arbol.Find(5);
+        var depth = _arbol.GetTreeDepth();
 
         Debug.Log("PreOrder Traversal:");
         _arbol.TraversePreOrder(_arbol.Root);
@@ -54,20 +50,20 @@ public class TEST_ABB_Nacho : MonoBehaviour
         _arbol.TraversePreOrder(_arbol.Root);
     }
 
-    class Node
+    private class Node
     {
         public Node LeftNode { get; set; }
         public Node RightNode { get; set; }
         public int Data { get; set; }
     }
 
-    class BinaryTree
+    private class BinaryTree
     {
         public Node Root { get; set; }
 
         public bool Add(int value)
         {
-            Node before = null, after = this.Root;
+            Node before = null, after = Root;
 
             while (after != null)
             {
@@ -77,17 +73,17 @@ public class TEST_ABB_Nacho : MonoBehaviour
                 else if (value > after.Data) //Is new node in right tree?
                     after = after.RightNode;
                 else
-                {
                     //Exist same value
                     return false;
-                }
             }
 
-            Node newNode = new Node();
+            var newNode = new Node();
             newNode.Data = value;
 
-            if (this.Root == null)//Tree ise empty
-                this.Root = newNode;
+            if (Root == null) //Tree ise empty
+            {
+                Root = newNode;
+            }
             else
             {
                 if (value < before.Data)
@@ -101,27 +97,32 @@ public class TEST_ABB_Nacho : MonoBehaviour
 
         public Node Find(int value)
         {
-            return this.Find(value, this.Root);
+            return Find(value, Root);
         }
 
         public void Remove(int value)
         {
-            this.Root = Remove(this.Root, value);
+            Root = Remove(Root, value);
         }
 
         private Node Remove(Node parent, int key)
         {
             if (parent == null) return parent;
 
-            if (key < parent.Data) parent.LeftNode = Remove(parent.LeftNode, key);
+            if (key < parent.Data)
+            {
+                parent.LeftNode = Remove(parent.LeftNode, key);
+            }
             else if (key > parent.Data)
+            {
                 parent.RightNode = Remove(parent.RightNode, key);
+            }
 
             else
             {
                 if (parent.LeftNode == null)
                     return parent.RightNode;
-                else if (parent.RightNode == null)
+                if (parent.RightNode == null)
                     return parent.LeftNode;
 
                 parent.Data = MinValue(parent.RightNode);
@@ -134,13 +135,14 @@ public class TEST_ABB_Nacho : MonoBehaviour
 
         private int MinValue(Node node)
         {
-            int minv = node.Data;
+            var minv = node.Data;
 
             while (node.LeftNode != null)
             {
                 minv = node.LeftNode.Data;
                 node = node.LeftNode;
             }
+
             return minv;
         }
 
@@ -151,15 +153,15 @@ public class TEST_ABB_Nacho : MonoBehaviour
                 if (value == parent.Data) return parent;
                 if (value < parent.Data)
                     return Find(value, parent.LeftNode);
-                else
-                    return Find(value, parent.RightNode);
+                return Find(value, parent.RightNode);
             }
+
             return null;
         }
 
         public int GetTreeDepth()
         {
-            return this.GetTreeDepth(this.Root);
+            return GetTreeDepth(Root);
         }
 
         private int GetTreeDepth(Node parent)
