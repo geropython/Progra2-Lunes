@@ -90417,9 +90417,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 631079429}
     m_Modifications:
     - target: {fileID: 178214754, guid: a122ac2c5630c7948b8f151b13710945, type: 3}
+      propertyPath: Key
+      value: 
+      objectReference: {fileID: 1683037827}
+    - target: {fileID: 178214754, guid: a122ac2c5630c7948b8f151b13710945, type: 3}
       propertyPath: KeyIcon
       value: 
       objectReference: {fileID: 1692998738}
+    - target: {fileID: 178214754, guid: a122ac2c5630c7948b8f151b13710945, type: 3}
+      propertyPath: _levelToLoad
+      value: Level 2
+      objectReference: {fileID: 0}
     - target: {fileID: 178214758, guid: a122ac2c5630c7948b8f151b13710945, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -90477,6 +90485,11 @@ PrefabInstance:
 --- !u!4 &1683037826 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4811834561362125424, guid: a122ac2c5630c7948b8f151b13710945, type: 3}
+  m_PrefabInstance: {fileID: 1683037825}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1683037827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4811834561362125388, guid: a122ac2c5630c7948b8f151b13710945, type: 3}
   m_PrefabInstance: {fileID: 1683037825}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1683989468

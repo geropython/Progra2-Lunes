@@ -1,21 +1,27 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 namespace _Main._Resources.Scripts.Inventory
 {
     public class Item : MonoBehaviour
     {
-        [SerializeField] private GameObject KeyIcon;
+        [SerializeField] private GameObject Key;
+        [SerializeField] private string _levelToLoad;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                KeyIcon.SetActive(true);
-                SceneManager.LoadScene("WinScreen");
+                Key.SetActive(true);
                 Debug.Log("Collected");
-                Destroy(this.gameObject);
-                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.lockState = CursorLockMode.None;
+                OnLevelChange?.Invoke();
+                SceneManager.LoadScene(_levelToLoad);
             }
         }
+
+
+        public static event Action OnLevelChange;
+        //unity event
     }
 }

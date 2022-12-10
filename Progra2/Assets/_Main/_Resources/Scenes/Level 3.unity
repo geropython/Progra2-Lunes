@@ -73388,9 +73388,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 364025343}
     m_Modifications:
     - target: {fileID: 178214754, guid: a122ac2c5630c7948b8f151b13710945, type: 3}
+      propertyPath: Key
+      value: 
+      objectReference: {fileID: 1405404857}
+    - target: {fileID: 178214754, guid: a122ac2c5630c7948b8f151b13710945, type: 3}
       propertyPath: KeyIcon
       value: 
       objectReference: {fileID: 2044134768}
+    - target: {fileID: 178214754, guid: a122ac2c5630c7948b8f151b13710945, type: 3}
+      propertyPath: _levelToLoad
+      value: WinScreen
+      objectReference: {fileID: 0}
     - target: {fileID: 178214758, guid: a122ac2c5630c7948b8f151b13710945, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -73448,6 +73456,11 @@ PrefabInstance:
 --- !u!4 &1405404856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4811834561362125424, guid: a122ac2c5630c7948b8f151b13710945, type: 3}
+  m_PrefabInstance: {fileID: 1405404855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1405404857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4811834561362125388, guid: a122ac2c5630c7948b8f151b13710945, type: 3}
   m_PrefabInstance: {fileID: 1405404855}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1423569136
