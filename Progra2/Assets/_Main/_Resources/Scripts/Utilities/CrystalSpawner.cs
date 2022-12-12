@@ -23,7 +23,7 @@ public class CrystalSpawner : MonoBehaviour
             var crystal = Instantiate(crystalPrefab, position, Quaternion.identity);
 
             // Add the crystal to the binary tree
-            // crystalTree.Add(crystal);
+            //crystalTree.Add(crystal);
         }
     }
 }

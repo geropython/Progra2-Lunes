@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class NewABB : MonoBehaviour
 {
+    private static readonly BinaryTree _arbol = new();
     [SerializeField] private ItemData _normalCrystal;
     [SerializeField] private ItemData _blueCrystal;
     [SerializeField] private ItemData _redCrystal;
@@ -10,8 +11,6 @@ public class NewABB : MonoBehaviour
     [SerializeField] private ItemData _greenCrystal;
     [SerializeField] private ItemData _orangeCrystal;
     [SerializeField] private ItemData _pinkCrystal;
-
-    private readonly BinaryTree _arbol = new();
 
     private ItemData[] crystals;
 
@@ -95,6 +94,43 @@ public class NewABB : MonoBehaviour
 
             return true;
         }
+
+
+        // public bool Add(ItemData data)
+        // {
+        //     var value = data.score;
+        //
+        //     Node before = null, after = Root;
+        //
+        //     while (after != null)
+        //     {
+        //         before = after;
+        //         if (value < after.Data) //Is new node in left tree? 
+        //             after = after.LeftNode;
+        //         else if (value > after.Data) //Is new node in right tree?
+        //             after = after.RightNode;
+        //         else
+        //             //Exist same value
+        //             return false;
+        //     }
+        //
+        //     var newNode = new Node();
+        //     newNode.Data = value;
+        //
+        //     if (Root == null) //Tree is empty
+        //     {
+        //         Root = newNode;
+        //     }
+        //     else
+        //     {
+        //         if (before != null && value < before.Data)
+        //             before.LeftNode = newNode;
+        //         else if (before != null) before.RightNode = newNode;
+        //     }
+        //
+        //     return true;
+        // }
+
 
         public Node Find(int value)
         {
