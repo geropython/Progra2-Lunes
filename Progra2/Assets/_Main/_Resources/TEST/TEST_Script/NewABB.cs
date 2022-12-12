@@ -13,19 +13,19 @@ public class NewABB : MonoBehaviour
 
     private readonly BinaryTree _arbol = new();
 
-    private int[] crystals;
+    private ItemData[] crystals;
 
     private void Start()
     {
         crystals = new[]
         {
-            _normalCrystal.score,
-            _blueCrystal.score,
-            _redCrystal.score,
-            _purpleCrystal.score,
-            _greenCrystal.score,
-            _orangeCrystal.score,
-            _pinkCrystal.score
+            _normalCrystal,
+            _blueCrystal,
+            _redCrystal,
+            _purpleCrystal,
+            _greenCrystal,
+            _orangeCrystal,
+            _pinkCrystal
         };
 
 
@@ -50,19 +50,21 @@ public class NewABB : MonoBehaviour
         _arbol.TraversePreOrder(_arbol.Root);
     }
 
-    private class Node
+    public class Node
     {
         public Node LeftNode { get; set; }
         public Node RightNode { get; set; }
         public int Data { get; set; }
     }
 
-    private class BinaryTree
+    public class BinaryTree
     {
         public Node Root { get; set; }
 
-        public bool Add(int value)
+        public bool Add(ItemData data)
         {
+            var value = data.score;
+
             Node before = null, after = Root;
 
             while (after != null)
@@ -80,16 +82,15 @@ public class NewABB : MonoBehaviour
             var newNode = new Node();
             newNode.Data = value;
 
-            if (Root == null) //Tree ise empty
+            if (Root == null) //Tree is empty
             {
                 Root = newNode;
             }
             else
             {
-                if (value < before.Data)
+                if (before != null && value < before.Data)
                     before.LeftNode = newNode;
-                else
-                    before.RightNode = newNode;
+                else if (before != null) before.RightNode = newNode;
             }
 
             return true;

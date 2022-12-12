@@ -10119,7 +10119,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 679536112, guid: e7327a52201ce5f47a7d4722d019d840, type: 3}
       propertyPath: moveSpeed
-      value: 20
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 679536112, guid: e7327a52201ce5f47a7d4722d019d840, type: 3}
       propertyPath: _healthBar
