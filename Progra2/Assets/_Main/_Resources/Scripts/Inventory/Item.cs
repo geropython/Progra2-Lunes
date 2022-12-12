@@ -20,7 +20,6 @@ namespace _Main._Resources.Scripts.Inventory
             }
         }
 
-
         public static event Action OnLevelChange;
         //unity event
     }

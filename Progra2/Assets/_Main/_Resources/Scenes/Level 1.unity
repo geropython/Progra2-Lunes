@@ -10118,6 +10118,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 903374814}
     m_Modifications:
     - target: {fileID: 679536112, guid: e7327a52201ce5f47a7d4722d019d840, type: 3}
+      propertyPath: moveSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 679536112, guid: e7327a52201ce5f47a7d4722d019d840, type: 3}
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 721706643}
